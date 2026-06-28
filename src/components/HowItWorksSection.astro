@@ -70,14 +70,14 @@ const steps = [
             <!-- Card -->
             <div class="flex-1 pb-2">
               <div class="card">
-                <div class="mb-1 font-mono text-[10px] font-semibold uppercase tracking-widest" style="color: var(--color-accent); opacity: 0.7;">
+                <div class="mb-1 font-mono text-xs font-semibold uppercase tracking-widest" style="color: var(--color-accent); opacity: 0.7;">
                   Week {step.week}
                 </div>
-                <h3 class="text-[0.9375rem] font-semibold text-white">{step.title}</h3>
+                <h3 class="text-base font-semibold text-white">{step.title}</h3>
                 <ul class="mt-3 space-y-2">
                   {step.items.map((item) => (
-                    <li class="flex gap-2.5 text-sm" style="color: var(--color-deep-400);">
-                      <span class="mt-1.5 block h-1.5 w-1.5 flex-shrink-0 rounded-full" style="background: rgba(245,158,11,0.35);" />
+                    <li class="flex gap-2.5 text-base" style="color: var(--color-deep-400);">
+                      <span class="mt-2 block h-1.5 w-1.5 flex-shrink-0 rounded-full" style="background: rgba(245,158,11,0.35);" />
                       {item}
                     </li>
                   ))}

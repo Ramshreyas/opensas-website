@@ -25,7 +25,10 @@
 }
 
 /* ── Base ── */
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  font-size: 17px;
+}
 
 body {
   font-family: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
@@ -59,7 +62,7 @@ code, pre, .mono, .font-mono {
 
 .section-header h2 {
   font-family: "Syne", sans-serif;
-  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-size: clamp(1.875rem, 4vw, 2.75rem);
   font-weight: 700;
   letter-spacing: -0.03em;
   color: white;
@@ -67,7 +70,7 @@ code, pre, .mono, .font-mono {
 
 .section-header p {
   margin-top: 1rem;
-  font-size: 1.0625rem;
+  font-size: 1.125rem;
   line-height: 1.7;
   color: var(--color-deep-300);
   max-width: 38rem;
@@ -153,7 +156,7 @@ code, pre, .mono, .font-mono {
   gap: 0.5rem;
   border-radius: 0.5rem;
   padding: 0.75rem 1.75rem;
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
   font-weight: 600;
   font-family: "IBM Plex Sans", sans-serif;
   letter-spacing: 0.01em;

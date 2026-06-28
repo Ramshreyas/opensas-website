@@ -13,7 +13,7 @@ import { faqItems } from "../data/faq";
     <div class="mt-10 space-y-2">
       {faqItems.map((item) => (
         <details class="faq-item group">
-          <summary class="flex cursor-pointer items-center justify-between gap-4 px-5 py-4 text-sm font-medium text-white">
+          <summary class="flex cursor-pointer items-center justify-between gap-4 px-5 py-4 text-base font-medium text-white">
             <span>{item.question}</span>
             <svg
               class="h-4 w-4 flex-shrink-0 transition-transform duration-200 group-open:rotate-45"
@@ -27,7 +27,7 @@ import { faqItems } from "../data/faq";
           </summary>
           <div class="px-5 pb-5 pt-0">
             <div class="h-px w-full mb-4" style="background: rgba(255,255,255,0.04);"></div>
-            <p class="text-sm leading-relaxed" style="color: var(--color-deep-400);">{item.answer}</p>
+            <p class="text-base leading-relaxed" style="color: var(--color-deep-400);">{item.answer}</p>
           </div>
         </details>
       ))}
