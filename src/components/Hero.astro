@@ -1,26 +1,32 @@
 ---
-import StackDiagram from "./StackDiagram.astro";
+const services = [
+  { name: "AI model serving",     location: "your GPU" },
+  { name: "Document search",      location: "your storage" },
+  { name: "Workflow automation",  location: "your cluster" },
+  { name: "Secure access",        location: "your network" },
+  { name: "Observability",        location: "your dashboards" },
+];
 ---
 
 <section class="relative overflow-hidden pt-28 pb-20 sm:pt-36 sm:pb-28">
   <!-- Grid -->
-  <div class="bg-grid pointer-events-none absolute inset-0 opacity-100" />
+  <div class="bg-grid pointer-events-none absolute inset-0" />
 
-  <!-- Subtle amber orb top-left of copy -->
+  <!-- Amber orb left -->
   <div class="pointer-events-none absolute top-16 left-0 h-[500px] w-[500px] -translate-x-1/3 rounded-full bg-amber-500/5 blur-[100px]" />
-  <!-- Subtle teal orb behind diagram -->
+  <!-- Teal orb right -->
   <div class="pointer-events-none absolute top-32 right-0 h-[400px] w-[400px] translate-x-1/3 rounded-full bg-teal-500/5 blur-[100px]" />
 
   <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
+    <div class="grid items-center gap-16 lg:grid-cols-2">
 
       <!-- Left: copy -->
-      <div class="max-w-xl">
+      <div class="max-w-lg">
 
         <!-- Badge -->
         <div class="mb-8 inline-flex items-center gap-2.5 rounded-full px-4 py-1.5"
-          style="background: linear-gradient(135deg, rgba(245,158,11,0.08) 0%, rgba(20,184,166,0.04) 100%); border: 1px solid rgba(245,158,11,0.15); font-family: 'IBM Plex Sans', sans-serif; font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.09em; text-transform: uppercase; color: rgba(245,158,11,0.8);">
-          <span class="flex h-1.5 w-1.5 rounded-full bg-accent" style="box-shadow: 0 0 6px rgba(245,158,11,0.8);"></span>
+          style="background: rgba(245,158,11,0.07); border: 1px solid rgba(245,158,11,0.18); font-family: 'IBM Plex Sans', sans-serif; font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.09em; text-transform: uppercase; color: rgba(245,158,11,0.75);">
+          <span class="h-1.5 w-1.5 rounded-full" style="background: var(--color-accent);"></span>
           Private AI Deployment Service
         </div>
 
@@ -31,26 +37,24 @@ import StackDiagram from "./StackDiagram.astro";
         </h1>
 
         <!-- Description -->
-        <p class="mt-6 text-base leading-relaxed sm:text-lg" style="color: var(--color-deep-300); max-width: 30rem;">
+        <p class="mt-5 text-base leading-relaxed" style="color: var(--color-deep-300); max-width: 30rem;">
           OpenSAS deploys a complete, private AI automation stack on your infrastructure in 6–8 weeks.
           Sensitive data never leaves your network. Your team owns the stack outright when we're done.
         </p>
 
         <!-- Stats -->
-        <div class="mt-8 flex items-stretch gap-0 overflow-hidden rounded-xl"
+        <div class="mt-8 flex items-stretch overflow-hidden rounded-xl"
           style="border: 1px solid rgba(255,255,255,0.06); background: rgba(13,21,32,0.7);">
           {[
-            { value: "0", label: "bytes to\nthird parties" },
+            { value: "0",     label: "bytes to\nthird parties" },
             { value: "6 wks", label: "kickoff to\nproduction" },
-            { value: "100%", label: "open-source\nyou own it" },
+            { value: "100%",  label: "open-source\nyou own it" },
           ].map((stat, i) => (
             <div class="flex flex-1 flex-col items-center justify-center px-4 py-5 text-center"
               style={i < 2 ? "border-right: 1px solid rgba(255,255,255,0.05);" : ""}>
-              <div class="stat-number" style="font-size: clamp(1.5rem, 3vw, 2rem);">{stat.value}</div>
+              <div class="stat-number" style="font-size: clamp(1.375rem, 2.5vw, 1.875rem);">{stat.value}</div>
               <div class="mt-1.5 whitespace-pre text-center leading-snug"
-                style="font-size: 0.6875rem; color: var(--color-deep-400); font-family: 'IBM Plex Sans', sans-serif;">
-                {stat.label}
-              </div>
+                style="font-size: 0.6875rem; color: var(--color-deep-400); font-family: 'IBM Plex Sans', sans-serif;">{stat.label}</div>
             </div>
           ))}
         </div>
@@ -67,12 +71,58 @@ import StackDiagram from "./StackDiagram.astro";
             See how it works
           </a>
         </div>
-
       </div>
 
-      <!-- Right: stack diagram -->
-      <div class="lg:justify-self-end">
-        <StackDiagram />
+      <!-- Right: status board -->
+      <div class="lg:justify-self-end w-full max-w-sm">
+        <div class="overflow-hidden rounded-xl"
+          style="background: var(--color-deep-800); border: 1px solid rgba(255,255,255,0.07); box-shadow: 0 24px 64px rgba(0,0,0,0.4);">
+
+          <!-- Terminal title bar -->
+          <div class="flex items-center gap-3 px-4 py-3"
+            style="border-bottom: 1px solid rgba(255,255,255,0.05); background: rgba(255,255,255,0.02);">
+            <div class="flex gap-1.5">
+              <span class="h-3 w-3 rounded-full" style="background: rgba(239,68,68,0.4);"></span>
+              <span class="h-3 w-3 rounded-full" style="background: rgba(245,158,11,0.4);"></span>
+              <span class="h-3 w-3 rounded-full" style="background: rgba(34,197,94,0.4);"></span>
+            </div>
+            <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.6875rem; color: var(--color-deep-400);">
+              opensas — your infrastructure
+            </span>
+          </div>
+
+          <!-- Services list -->
+          <div class="px-5 py-4 space-y-0">
+            {services.map((s, i) => (
+              <div class="flex items-center justify-between gap-4 py-2.5"
+                style={i < services.length - 1 ? "border-bottom: 1px solid rgba(255,255,255,0.04);" : ""}>
+                <div class="flex items-center gap-2.5">
+                  <svg class="h-3.5 w-3.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    style="color: var(--color-mesh);">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--color-deep-200);">
+                    {s.name}
+                  </span>
+                </div>
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.6875rem; color: var(--color-deep-500); white-space: nowrap;">
+                  {s.location}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          <!-- Footer: egress counter -->
+          <div class="flex items-center justify-between px-5 py-3"
+            style="border-top: 1px solid rgba(255,255,255,0.05); background: rgba(245,158,11,0.03);">
+            <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.6875rem; color: var(--color-deep-400);">
+              network egress
+            </span>
+            <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.875rem; font-weight: 700; color: var(--color-accent);">
+              0 bytes
+            </span>
+          </div>
+        </div>
       </div>
 
     </div>
