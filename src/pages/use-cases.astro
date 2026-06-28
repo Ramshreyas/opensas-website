@@ -1,0 +1,62 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import CTASection from "../components/CTASection.astro";
+import { useCases } from "../data/use-cases";
+---
+
+<BaseLayout
+  title="Use Cases — OpenSAS"
+  description="See how OpenSAS enables private AI agent deployments for regulated industries, internal developer platforms, and multi-tenant sandboxes."
+>
+  <Header />
+  <main>
+    <!-- Hero -->
+    <section class="pt-28 pb-16 sm:pt-36 sm:pb-20">
+      <div class="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+        <h1 class="text-4xl font-extrabold text-white sm:text-5xl">Use Cases</h1>
+        <p class="mt-4 text-lg text-deep-400 max-w-2xl mx-auto">
+          Three production scenarios where OpenSAS eliminates the trade-off between
+          data privacy, flexibility, and deployment speed.
+        </p>
+      </div>
+    </section>
+
+    <!-- Detailed use cases -->
+    <section class="pb-20 sm:pb-28">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <div class="space-y-16">
+          {useCases.map((uc, i) => (
+            <article class="scroll-mt-24">
+              <div class="flex items-center gap-3 text-accent">
+                <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-accent/10 text-xs font-bold">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span class="text-xs font-medium uppercase tracking-widest text-accent">{uc.industry}</span>
+              </div>
+              <h2 class="mt-3 text-2xl font-bold text-white sm:text-3xl">{uc.title}</h2>
+              <p class="mt-4 text-base leading-relaxed text-deep-300">{uc.detail}</p>
+
+              <div class="mt-6 grid gap-3 sm:grid-cols-3">
+                {uc.outcomes.map((outcome) => (
+                  <div class="rounded-lg border border-deep-700 bg-deep-800/30 p-4">
+                    <div class="flex items-start gap-2">
+                      <svg class="mt-0.5 h-4 w-4 flex-shrink-0 text-mesh" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span class="text-sm text-deep-400">{outcome}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <CTASection />
+  </main>
+  <Footer />
+</BaseLayout>

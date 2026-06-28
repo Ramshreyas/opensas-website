@@ -1,0 +1,161 @@
+---
+import { stackLayers } from "../data/stack";
+---
+
+<div id="stack-diagram" class="w-full max-w-lg">
+  <!-- Desktop: interactive vertical stack -->
+  <div class="hidden sm:block">
+    <div class="rounded-xl border border-deep-700 bg-deep-800/60 p-4 glow-accent">
+      <div class="flex flex-col gap-1.5">
+        {stackLayers.map((layer) => (
+          <div
+            class="stack-layer group rounded-lg transition-all duration-200"
+            data-layer-id={layer.id}
+          >
+            <!-- Collapsed: solid bar with left accent, number + name + one-liner -->
+            <div
+              class="flex cursor-pointer items-center gap-3 rounded-lg border border-deep-700 bg-deep-800/80 px-4 py-3 transition-all duration-200 hover:border-deep-500"
+              style="border-left-width: 4px; border-left-color: {layer.color}"
+            >
+              <!-- Number badge -->
+              <div
+                class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-md text-xs font-bold text-white shadow-sm"
+                style="background-color: {layer.color}"
+              >
+                {layer.id}
+              </div>
+              <!-- Name + one-liner -->
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center gap-2">
+                  <h3 class="text-sm font-semibold text-white whitespace-nowrap">{layer.name}</h3>
+                  <svg
+                    class="h-3 w-3 flex-shrink-0 text-deep-500 transition-transform duration-200 group-data-[expanded=true]:rotate-180"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </div>
+                <p class="text-xs text-deep-400 mt-0.5 whitespace-nowrap">{layer.description}</p>
+              </div>
+              <!-- Tools as small pills -->
+              <div class="hidden lg:flex gap-1 flex-shrink-0">
+                {layer.tools.slice(0, 2).map((tool) => (
+                  <span class="rounded-md bg-deep-700/70 px-2 py-0.5 text-[10px] font-medium text-deep-300 whitespace-nowrap">
+                    {tool}
+                  </span>
+                ))}
+                {layer.tools.length > 2 && (
+                  <span class="text-[10px] text-deep-500">+{layer.tools.length - 2}</span>
+                )}
+              </div>
+            </div>
+            <!-- Expanded details -->
+            <div class="accordion-content" data-layer-content={layer.id}>
+              <div>
+                <div class="mx-4 mb-3 rounded-lg border border-deep-700 bg-deep-900/80 p-3">
+                  <ul class="space-y-2">
+                    {layer.details.map((detail) => (
+                      <li class="flex gap-2 text-xs text-deep-400">
+                        <span
+                          class="mt-0.5 block h-1.5 w-1.5 flex-shrink-0 rounded-full"
+                          style="background-color: {layer.color}"
+                        />
+                        {detail}
+                      </li>
+                    ))}
+                  </ul>
+                  <div class="mt-3 flex flex-wrap gap-1.5 border-t border-deep-700/50 pt-3">
+                    {layer.tools.map((tool) => (
+                      <span class="rounded-md border border-deep-600 bg-deep-700/50 px-2 py-0.5 text-[10px] font-medium text-deep-200">
+                        {tool}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile: accordion -->
+  <div class="sm:hidden">
+    <div class="flex flex-col gap-2">
+      {stackLayers.map((layer) => (
+        <details class="group rounded-lg border border-deep-700 bg-deep-800/30">
+          <summary class="flex cursor-pointer items-center gap-3 p-3">
+            <div
+              class="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded text-xs font-bold text-white"
+              style="background-color: {layer.color}"
+            >
+              {layer.id}
+            </div>
+            <div class="flex-1 min-w-0">
+              <span class="text-sm font-semibold text-white">{layer.name}</span>
+              <p class="text-xs text-deep-400">{layer.description}</p>
+            </div>
+            <svg
+              class="h-4 w-4 flex-shrink-0 text-deep-400 transition-transform duration-200 group-open:rotate-180"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </summary>
+          <div class="border-t border-deep-700/50 p-3">
+            <div class="mb-2 flex flex-wrap gap-1.5">
+              {layer.tools.map((tool) => (
+                <span class="rounded bg-deep-700/70 px-2 py-0.5 text-[10px] font-medium text-deep-300">
+                  {tool}
+                </span>
+              ))}
+            </div>
+            <ul class="space-y-2">
+              {layer.details.map((detail) => (
+                <li class="flex gap-2 text-xs text-deep-400">
+                  <span
+                    class="mt-0.5 block h-1.5 w-1.5 flex-shrink-0 rounded-full"
+                    style="background-color: {layer.color}"
+                  />
+                  {detail}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</div>
+
+<script>
+  // Desktop expand/collapse interactivity
+  const layers = document.querySelectorAll<HTMLElement>("#stack-diagram .stack-layer");
+
+  layers.forEach((layer) => {
+    const content = layer.querySelector<HTMLElement>(`[data-layer-content]`);
+    if (!content) return;
+
+    layer.addEventListener("click", () => {
+      const isExpanded = layer.dataset.expanded === "true";
+      // Collapse all
+      layers.forEach((l) => {
+        l.dataset.expanded = "false";
+        const c = l.querySelector<HTMLElement>(`[data-layer-content]`);
+        if (c) c.classList.remove("open");
+      });
+      // Toggle this one
+      if (!isExpanded) {
+        layer.dataset.expanded = "true";
+        content.classList.add("open");
+      }
+    });
+  });
+
+  // All layers start collapsed
+</script>

@@ -1,0 +1,164 @@
+@import "tailwindcss";
+
+/* ── Custom design tokens ── */
+@theme {
+  --color-deep-900: #0b1120;
+  --color-deep-800: #0f172a;
+  --color-deep-700: #1e293b;
+  --color-deep-600: #334155;
+  --color-deep-400: #64748b;
+  --color-deep-200: #cbd5e1;
+  --color-deep-50: #f1f5f9;
+  --color-accent: #f59e0b;
+  --color-accent-hover: #d97706;
+  --color-mesh: #14b8a6;
+  --color-mesh-hover: #0d9488;
+  --color-layer-0: #14b8a6;
+  --color-layer-1: #3b82f6;
+  --color-layer-2: #8b5cf6;
+  --color-layer-3: #f59e0b;
+  --color-layer-4: #06b6d4;
+}
+
+/* ── Base typography ── */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  background-color: var(--color-deep-900);
+  color: var(--color-deep-200);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code,
+pre,
+.mono {
+  font-family: "JetBrains Mono", "Fira Code", "Cascadia Code", monospace;
+}
+
+/* ── Section styling ── */
+.section-header {
+  @apply mb-12 text-center;
+}
+
+.section-header h2 {
+  @apply text-3xl font-bold tracking-tight text-white sm:text-4xl;
+}
+
+.section-header p {
+  @apply mt-4 text-lg text-deep-400 max-w-2xl mx-auto;
+}
+
+/* ── Gradient text accent ── */
+.text-accent-gradient {
+  background: linear-gradient(135deg, var(--color-accent), var(--color-mesh));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Grid background pattern ── */
+.bg-grid {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ── Glow effects ── */
+.glow-accent {
+  box-shadow: 0 0 40px color-mix(in srgb, var(--color-accent) 15%, transparent);
+}
+
+.glow-mesh {
+  box-shadow: 0 0 40px color-mix(in srgb, var(--color-mesh) 15%, transparent);
+}
+
+/* ── Button base ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 0.75rem;
+  padding: 0.75rem 2rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background-color: var(--color-accent);
+  color: var(--color-deep-900);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-accent-hover);
+  box-shadow: 0 4px 24px color-mix(in srgb, var(--color-accent) 25%, transparent);
+}
+
+.btn-secondary {
+  border: 1px solid var(--color-deep-600);
+  color: var(--color-deep-200);
+}
+
+.btn-secondary:hover {
+  border-color: var(--color-deep-400);
+  background-color: var(--color-deep-800);
+}
+
+.btn-ghost {
+  @apply text-deep-400 hover:text-white;
+}
+
+/* ── Card base ── */
+.card {
+  @apply rounded-xl border border-deep-700 bg-deep-800/50 p-6 backdrop-blur-sm;
+}
+
+/* ── Stack layer styling ── */
+.stack-layer {
+  @apply cursor-pointer rounded-lg border-2 border-transparent p-4 transition-all duration-300;
+}
+
+.stack-layer:hover {
+  @apply border-deep-600 bg-deep-800/80;
+}
+
+.stack-layer.active {
+  @apply border-deep-400 bg-deep-800;
+}
+
+.stack-layer .layer-number {
+  @apply flex h-8 w-8 items-center justify-center rounded-md text-xs font-bold;
+}
+
+/* ── Animated underline ── */
+.link-underline {
+  @apply relative;
+}
+
+.link-underline::after {
+  content: "";
+  @apply absolute bottom-0 left-0 h-px w-0 bg-accent transition-all duration-300;
+}
+
+.link-underline:hover::after {
+  @apply w-full;
+}
+
+/* ── Mobile accordion ── */
+.accordion-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s ease;
+}
+
+.accordion-content.open {
+  grid-template-rows: 1fr;
+}
+
+.accordion-content > div {
+  overflow: hidden;
+}

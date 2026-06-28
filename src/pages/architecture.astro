@@ -1,0 +1,130 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { stackLayers } from "../data/stack";
+---
+
+<BaseLayout
+  title="Architecture — OpenSAS"
+  description="Full layer-by-layer breakdown of the OpenSAS five-layer stack: Mesh, Infrastructure, Data, Orchestration, and Interfaces."
+>
+  <Header />
+  <main>
+    <!-- Hero -->
+    <section class="pt-28 pb-16 sm:pt-36 sm:pb-20">
+      <div class="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+        <div class="mb-4 inline-flex items-center gap-2 rounded-full border border-deep-600/50 bg-deep-800/50 px-4 py-1.5 text-xs font-medium text-deep-400">
+          <span class="flex h-2 w-2 rounded-full bg-accent" />
+          Technical Deep-Dive
+        </div>
+        <h1 class="text-4xl font-extrabold text-white sm:text-5xl">The OpenSAS Stack</h1>
+        <p class="mt-4 text-lg text-deep-400 max-w-2xl mx-auto">
+          Five layers, from the connectivity fabric up to user-facing interfaces.
+          Every layer is independently deployable, composable, and built from open-source components.
+        </p>
+      </div>
+    </section>
+
+    <!-- Layer-by-layer breakdown -->
+    <section class="pb-20 sm:pb-28">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <div class="space-y-12">
+          {stackLayers.map((layer) => (
+            <article id={`layer-${layer.id}`} class="scroll-mt-24">
+              <div class="card">
+                <div class="flex items-center gap-4">
+                  <div
+                    class="flex h-10 w-10 items-center justify-center rounded-lg text-base font-bold text-white"
+                    style="background-color: {layer.color}"
+                  >
+                    {layer.id}
+                  </div>
+                  <div>
+                    <h2 class="text-xl font-bold text-white">{layer.name}</h2>
+                    <p class="text-sm text-deep-400">{layer.description}</p>
+                  </div>
+                </div>
+
+                <!-- Tools -->
+                <div class="mt-6 flex flex-wrap gap-2">
+                  {layer.tools.map((tool) => (
+                    <span class="rounded-md border border-deep-600 bg-deep-700/50 px-3 py-1 text-xs font-medium text-deep-200">
+                      {tool}
+                    </span>
+                  ))}
+                </div>
+
+                <!-- Details -->
+                <ul class="mt-6 space-y-3">
+                  {layer.details.map((detail) => (
+                    <li class="flex gap-3 text-sm leading-relaxed text-deep-300">
+                      <span
+                        class="mt-1 block h-2 w-2 flex-shrink-0 rounded-full"
+                        style="background-color: {layer.color}"
+                      />
+                      {detail}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <!-- Cross-layer dependencies -->
+              {layer.id > 0 && (
+                <div class="mt-3 flex items-center gap-2 pl-14">
+                  <svg class="h-4 w-4 text-deep-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                  </svg>
+                  <span class="text-xs text-deep-500">
+                    Depends on Layer {layer.id - 1}: {stackLayers.find(l => l.id === layer.id - 1)?.name}
+                  </span>
+                </div>
+              )}
+            </article>
+          ))}
+        </div>
+
+        <!-- Architecture principles -->
+        <div class="mt-16">
+          <h3 class="text-lg font-semibold text-white">Architecture Principles</h3>
+          <div class="mt-4 grid gap-4 sm:grid-cols-2">
+            {[
+              {
+                title: "Composable",
+                desc: "Each layer can be deployed independently. Don't need a chat UI? Skip Layer 4. Only need vector search? Start with Layer 2.",
+              },
+              {
+                title: "Auditable",
+                desc: "Every component produces structured logs. Teleport session recording, OpenBao audit trails, and OpenTelemetry tracing provide complete observability.",
+              },
+              {
+                title: "Portable",
+                desc: "No cloud-specific dependencies. Deploy on K8s, raw VPS, or bare metal. Works in air-gapped environments. Migrate between infrastructure providers without stack changes.",
+              },
+              {
+                title: "Upgradable",
+                desc: "Each component is independently versioned and upgradable. Rolling upgrades with zero downtime. We provide upgrade playbooks as part of the engagement.",
+              },
+            ].map((principle) => (
+              <div class="rounded-lg border border-deep-700 bg-deep-800/30 p-4">
+                <h4 class="text-sm font-semibold text-white">{principle.title}</h4>
+                <p class="mt-1 text-xs text-deep-400">{principle.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="mt-12 rounded-xl border border-deep-700 bg-deep-800/30 p-6 text-center">
+          <p class="text-sm text-deep-400">
+            Want to see how this stack maps to your infrastructure?
+          </p>
+          <a href="/contact" class="btn-primary mt-3 inline-flex">
+            Schedule a discovery call
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>

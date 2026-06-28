@@ -1,0 +1,27 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import ProblemSection from "../components/ProblemSection.astro";
+import UseCasesSection from "../components/UseCasesSection.astro";
+import HowItWorksSection from "../components/HowItWorksSection.astro";
+import FAQSection from "../components/FAQSection.astro";
+import CTASection from "../components/CTASection.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<BaseLayout
+  title="OpenSAS — Sovereign Automation Stack"
+  description="Run autonomous agents on your hardware, under your control. Zero data leak, zero vendor lock-in. Production AI infrastructure deployed in 6-8 weeks."
+>
+  <Header />
+  <main>
+    <Hero />
+    <ProblemSection />
+    <UseCasesSection />
+    <HowItWorksSection />
+    <FAQSection />
+    <CTASection />
+  </main>
+  <Footer />
+</BaseLayout>

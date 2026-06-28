@@ -1,0 +1,103 @@
+---
+const steps = [
+  {
+    week: "1–2",
+    title: "Architecture Assessment & Security Review",
+    items: [
+      "We audit your existing infrastructure, network topology, and security requirements.",
+      "We define the target architecture: which models, which tools, which access controls.",
+      "You get a detailed architecture document and deployment plan.",
+    ],
+  },
+  {
+    week: "3–4",
+    title: "Infrastructure Provisioning & Stack Deployment",
+    items: [
+      "We deploy the full OpenSAS stack in your environment — K8s, Teleport mesh, every layer.",
+      "Helm charts, automated scripts, and IaC templates are left with your team.",
+      "Integration tests verify every component end-to-end.",
+    ],
+  },
+  {
+    week: "5–6",
+    title: "Workflow Development & Team Handover",
+    items: [
+      "We build your first 3 production workflows in n8n (or MCP/FastAPI as needed).",
+      "Your team receives hands-on training: day-2 operations, troubleshooting, upgrades.",
+      "Full documentation: architecture, runbooks, incident response procedures.",
+    ],
+  },
+  {
+    week: "7–8",
+    title: "Go-Live & Post-Deployment Support",
+    items: [
+      "Production cutover with your team driving.",
+      "Performance benchmarks and cost baselines established.",
+      "Optional retainer begins for ongoing workflow development and optimization.",
+    ],
+  },
+];
+---
+
+<section id="how-it-works" class="border-t border-deep-700/50 py-20 sm:py-28">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="section-header">
+      <h2>From zero to production in 6–8 weeks</h2>
+      <p>
+        This isn't a DIY toolkit you assemble yourself. It's a turnkey engagement.
+        Your team owns the stack at the end.
+      </p>
+    </div>
+
+    <div class="mt-12 relative">
+      <!-- Timeline line -->
+      <div class="absolute top-0 bottom-0 left-[18px] hidden w-px bg-gradient-to-b from-accent via-mesh to-deep-600 md:block" />
+
+      <div class="space-y-8 md:space-y-12">
+        {steps.map((step) => (
+          <div class="relative md:flex md:gap-8">
+            <!-- Week badge -->
+            <div class="flex items-center gap-4 md:w-32 md:flex-col md:items-start md:gap-1">
+              <div class="relative z-10 flex h-9 w-9 items-center justify-center rounded-full bg-accent text-xs font-bold text-deep-900 shadow-lg shadow-accent/20 md:h-10 md:w-10">
+                {step.week}
+              </div>
+              <span class="text-xs font-semibold uppercase tracking-wider text-accent md:text-[10px]">
+                Week {step.week}
+              </span>
+            </div>
+
+            <!-- Step card -->
+            <div class="mt-3 flex-1 md:mt-0">
+              <div class="card">
+                <h3 class="text-base font-semibold text-white">{step.title}</h3>
+                <ul class="mt-3 space-y-2">
+                  {step.items.map((item) => (
+                    <li class="flex gap-2 text-sm text-deep-400">
+                      <span class="mt-1.5 block h-1.5 w-1.5 flex-shrink-0 rounded-full bg-deep-600" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Deliverables summary -->
+    <div class="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {[
+        { label: "IaC Blueprint", desc: "Helm charts, configs, automated scripts" },
+        { label: "Security Assessment", desc: "Threat model, IAM config, audit logs" },
+        { label: "Team Training", desc: "Day-2 operations, runbooks, handover" },
+        { label: "Ongoing Support", desc: "Optional retainer for workflow dev & optimization" },
+      ].map((item) => (
+        <div class="rounded-lg border border-deep-700 bg-deep-800/30 p-4 text-center">
+          <div class="text-sm font-semibold text-white">{item.label}</div>
+          <div class="mt-1 text-xs text-deep-400">{item.desc}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

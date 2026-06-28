@@ -1,0 +1,45 @@
+---
+const problems = [
+  {
+    title: "Your data touches third-party APIs",
+    description:
+      "Every prompt sent to OpenAI, Anthropic, or Cohere is a data leak risk. Your proprietary code, internal documents, and customer PII traverse networks you don't control and get stored on servers you can't audit.",
+  },
+  {
+    title: "You're betting the architecture on a single vendor",
+    description:
+      "Build on one model provider's API and you're locked into their pricing, their rate limits, their models, and their deprecation schedule. Switching costs are high — sometimes prohibitive.",
+  },
+  {
+    title: "Your team spends weeks on infrastructure plumbing",
+    description:
+      "Connecting vLLM + Qdrant + n8n + Teleport + Grafana is a month of integration work — if you have the in-house expertise. Most teams don't, so they settle for half-measures or SaaS workarounds.",
+  },
+];
+---
+
+<section id="problem" class="border-t border-deep-700/50 py-20 sm:py-28">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="section-header">
+      <h2>The problem with production AI today</h2>
+      <p>
+        Every option forces a compromise between security, flexibility, and time-to-deployment.
+        OpenSAS eliminates the trade-off.
+      </p>
+    </div>
+
+    <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {problems.map((problem) => (
+        <div class="card group hover:border-deep-600">
+          <div class="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-accent/10 text-accent">
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold text-white">{problem.title}</h3>
+          <p class="mt-2 text-sm leading-relaxed text-deep-400">{problem.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
