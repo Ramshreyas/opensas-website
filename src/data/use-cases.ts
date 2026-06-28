@@ -8,42 +8,42 @@ export interface UseCase {
 
 export const useCases: UseCase[] = [
   {
-    title: "Private Agentic Workflows for Regulated Industries",
+    title: "AI Automation for Regulated Industries",
     industry: "Financial Services / Healthcare / Legal",
     summary:
-      "Deploy LLM-powered compliance agents that review communications, flag policy violations, and draft regulatory filings — on data that cannot leave your VPC.",
+      "Deploy AI agents that review communications, flag compliance issues, and draft regulatory filings — on data that never leaves your network.",
     detail:
-      "vLLM runs on your GPUs. MinIO stores internal documents. n8n orchestrates the review pipeline. Teleport provides audit-grade SSH access. Zero bytes touch the public internet.",
+      "Your AI models run inside your own environment. Every document stays behind your firewall. Every action is logged and auditable. No data touches a third-party server at any point in the process.",
     outcomes: [
-      "Zero data leak — no third-party API calls for inference or storage",
-      "Full audit trail of every agent action (Teleport + OpenBao)",
-      "Compliant with GDPR, HIPAA, SOC2 data residency requirements",
+      "Zero data leak — all AI inference runs inside your own infrastructure",
+      "Full audit trail of every agent action for regulatory review",
+      "Compliant with GDPR, HIPAA, and SOC 2 data residency requirements",
     ],
   },
   {
-    title: "Internal Developer Platform with AI-Augmented Tooling",
+    title: "AI Developer Tools That Keep Your Code Private",
     industry: "Platform Engineering / Software Development",
     summary:
-      "Give your engineers AI-powered code review, documentation generation, and incident response bots — without sending proprietary source code to a third-party API.",
+      "Give your engineers AI-powered code review, documentation generation, and incident response — without proprietary source code ever leaving your network.",
     detail:
-      "MCP servers connect to internal git repos and observability stacks. LiteLLM routes requests across locally-hosted models. Langfuse traces every prompt for debugging.",
+      "Your AI tooling connects directly to your internal repos, monitoring systems, and ticketing tools. Engineers use the tools they already know — Slack, their IDE, the CLI — with AI assistance built in. Your source code never leaves your network.",
     outcomes: [
-      "Proprietary source code never leaves your network",
-      "Engineers use familiar tools (Slack, IDE, CLI) with AI augmentation",
-      "Swap models (Llama → Mistral → Qwen) without changing application code",
+      "Proprietary source code stays entirely inside your infrastructure",
+      "Engineers use familiar tools with AI augmentation, no workflow disruption",
+      "Swap AI models without changing any application code",
     ],
   },
   {
-    title: "Multi-Tenant AI Sandbox for Consulting & Services",
+    title: "Isolated AI Environments Per Client",
     industry: "Consulting / Professional Services / MSPs",
     summary:
-      "Isolated AI environments per client — each client's data, models, and workflows strictly partitioned, all running on your own hardware.",
+      "Give every client their own dedicated AI environment — with strict data isolation — all running on your hardware.",
     detail:
-      "Layer 3 IAM maps to per-tenant isolation. Teleport mesh provides per-client access controls. Kubernetes namespaces + Qdrant collections handle data partitioning.",
+      "Each client's data, workflows, and AI models are completely isolated from every other client. One infrastructure pool, zero cross-tenant exposure. Clients get dedicated interfaces and access controls without separate infrastructure costs.",
     outcomes: [
-      "Strict tenant isolation — no cross-client data leakage",
-      "Single infrastructure pool serving multiple clients",
-      "Clients get dedicated UIs and access controls without shared infrastructure",
+      "Strict client isolation — no cross-tenant data exposure, ever",
+      "Single infrastructure pool serving multiple clients efficiently",
+      "Clients get dedicated interfaces and access controls at no extra cost",
     ],
   },
 ];

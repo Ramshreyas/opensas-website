@@ -2,38 +2,38 @@
 const steps = [
   {
     week: "1–2",
-    title: "Architecture Assessment & Security Review",
+    title: "We design your private AI architecture",
     items: [
-      "We audit your existing infrastructure, network topology, and security requirements.",
-      "We define the target architecture: which models, which tools, which access controls.",
-      "You get a detailed architecture document and deployment plan.",
+      "We map your existing infrastructure, compliance requirements, and the workflows you want to automate.",
+      "We select the right AI models and components for your specific workload — not a one-size-fits-all configuration.",
+      "You receive a detailed architecture document and deployment plan to review and approve before we build anything.",
     ],
   },
   {
     week: "3–4",
-    title: "Infrastructure Provisioning & Stack Deployment",
+    title: "We deploy everything in your environment",
     items: [
-      "We deploy the full OpenSAS stack in your environment — K8s, Teleport mesh, every layer.",
-      "Helm charts, automated scripts, and IaC templates are left with your team.",
-      "Integration tests verify every component end-to-end.",
+      "We install and configure the full stack inside your own infrastructure — nothing is hosted on our servers.",
+      "All deployment templates, configuration files, and automation scripts are handed over to your team.",
+      "End-to-end tests confirm every component is working before we move to the next phase.",
     ],
   },
   {
     week: "5–6",
-    title: "Workflow Development & Team Handover",
+    title: "We build your first AI workflows",
     items: [
-      "We build your first 3 production workflows in n8n (or MCP/FastAPI as needed).",
-      "Your team receives hands-on training: day-2 operations, troubleshooting, upgrades.",
-      "Full documentation: architecture, runbooks, incident response procedures.",
+      "We build your first 3 production AI workflows — document review, compliance checking, code assistance, or whatever your team needs most.",
+      "Your engineers learn to operate, troubleshoot, and extend the stack through hands-on working sessions.",
+      "Full documentation: architecture diagrams, operations runbooks, and step-by-step incident response guides.",
     ],
   },
   {
     week: "7–8",
-    title: "Go-Live & Post-Deployment Support",
+    title: "Go-live and post-deployment support",
     items: [
-      "Production cutover with your team driving.",
-      "Performance benchmarks and cost baselines established.",
-      "Optional retainer begins for ongoing workflow development and optimization.",
+      "Production cutover with your team in control — you own it from day one.",
+      "Performance benchmarks and cost baselines established so you know exactly what you're running.",
+      "Optional retainer for ongoing workflow development and optimization — no forced subscription.",
     ],
   },
 ];
@@ -44,7 +44,7 @@ const steps = [
     <div class="section-header">
       <h2>From zero to production in 6–8 weeks</h2>
       <p>
-        This isn't a DIY toolkit you assemble yourself. It's a turnkey engagement.
+        This isn't a DIY toolkit you assemble yourself. It's a done-for-you engagement.
         Your team owns the stack at the end.
       </p>
     </div>
@@ -58,7 +58,7 @@ const steps = [
           <div class="relative md:flex md:gap-8">
             <!-- Week badge -->
             <div class="flex items-center gap-4 md:w-32 md:flex-col md:items-start md:gap-1">
-              <div class="relative z-10 flex h-9 w-9 items-center justify-center rounded-full bg-accent text-xs font-bold text-deep-900 shadow-lg shadow-accent/20 md:h-10 md:w-10">
+              <div class="relative z-10 flex h-9 w-9 items-center justify-center rounded-full bg-accent text-xs font-bold text-deep-900 shadow-lg shadow-accent/20 md:h-10 md:w-10" style="font-family: 'JetBrains Mono', monospace;">
                 {step.week}
               </div>
               <span class="text-xs font-semibold uppercase tracking-wider text-accent md:text-[10px]">
@@ -73,7 +73,7 @@ const steps = [
                 <ul class="mt-3 space-y-2">
                   {step.items.map((item) => (
                     <li class="flex gap-2 text-sm text-deep-400">
-                      <span class="mt-1.5 block h-1.5 w-1.5 flex-shrink-0 rounded-full bg-deep-600" />
+                      <span class="mt-1.5 block h-1.5 w-1.5 flex-shrink-0 rounded-full bg-accent/40" />
                       {item}
                     </li>
                   ))}
@@ -88,14 +88,14 @@ const steps = [
     <!-- Deliverables summary -->
     <div class="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
       {[
-        { label: "IaC Blueprint", desc: "Helm charts, configs, automated scripts" },
-        { label: "Security Assessment", desc: "Threat model, IAM config, audit logs" },
-        { label: "Team Training", desc: "Day-2 operations, runbooks, handover" },
-        { label: "Ongoing Support", desc: "Optional retainer for workflow dev & optimization" },
+        { label: "Deployment Templates", desc: "Configuration files, automation scripts, and everything your team needs to reproduce or extend the stack" },
+        { label: "Security Assessment", desc: "Threat model, access control config, and audit logging setup for your environment" },
+        { label: "Hands-On Training", desc: "Live sessions with your engineers covering operations, troubleshooting, and day-2 management" },
+        { label: "Optional Retainer", desc: "Continued support for new workflow development, upgrades, and optimization — on your terms" },
       ].map((item) => (
-        <div class="rounded-lg border border-deep-700 bg-deep-800/30 p-4 text-center">
+        <div class="rounded-lg border border-deep-700 bg-deep-800/30 p-4 text-center transition-colors hover:border-deep-600">
           <div class="text-sm font-semibold text-white">{item.label}</div>
-          <div class="mt-1 text-xs text-deep-400">{item.desc}</div>
+          <div class="mt-1 text-xs leading-relaxed text-deep-400">{item.desc}</div>
         </div>
       ))}
     </div>

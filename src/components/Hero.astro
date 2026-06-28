@@ -4,7 +4,7 @@ import StackDiagram from "./StackDiagram.astro";
 
 <section class="relative overflow-hidden pt-28 pb-16 sm:pt-36 sm:pb-24">
   <!-- Background grid -->
-  <div class="bg-grid pointer-events-none absolute inset-0 opacity-50" />
+  <div class="bg-grid pointer-events-none absolute inset-0 opacity-60" />
 
   <!-- Gradient glow orbs -->
   <div class="pointer-events-none absolute top-20 left-1/4 h-96 w-96 -translate-x-1/2 rounded-full bg-accent/5 blur-3xl" />
@@ -14,59 +14,49 @@ import StackDiagram from "./StackDiagram.astro";
     <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
       <!-- Left: copy -->
       <div class="max-w-xl">
-        <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-deep-600/50 bg-deep-800/50 px-4 py-1.5 text-xs font-medium text-deep-400">
+        <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-deep-600/50 bg-deep-800/50 px-4 py-1.5 text-xs font-medium text-deep-400" style="font-family: 'IBM Plex Sans', sans-serif; letter-spacing: 0.05em; text-transform: uppercase;">
           <span class="flex h-2 w-2 rounded-full bg-accent" />
-          Sovereign Automation Stack — v1.0
+          Private AI Deployment Service
         </div>
 
-        <h1 class="text-4xl font-extrabold leading-none tracking-tight text-white sm:text-5xl lg:text-6xl">
-          <span class="text-accent-gradient">Sovereign</span><br />
-          <span class="text-accent-gradient">Automation</span><br />
-          <span class="text-accent-gradient">Stack</span>
+        <h1 class="text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl" style="font-family: 'Syne', sans-serif; letter-spacing: -0.02em;">
+          <span class="text-accent-gradient">Run AI on your</span><br />
+          <span class="text-accent-gradient">own servers.</span><br />
+          <span class="text-accent-gradient">Not theirs.</span>
         </h1>
-        <p class="mt-4 text-xl font-semibold text-deep-200 sm:text-2xl">
-          Not your infra, not your agent
+
+        <p class="mt-6 text-lg leading-relaxed text-deep-400 sm:text-xl" style="font-family: 'IBM Plex Sans', sans-serif;">
+          OpenSAS deploys a complete, private AI automation stack on your infrastructure in 6–8 weeks.
+          <strong class="text-deep-200 font-medium">Sensitive data never leaves your network.</strong>
+          No third-party API calls for inference or storage. Your team owns the stack outright when we're done.
         </p>
 
-        <p class="mt-6 text-lg leading-relaxed text-deep-400 sm:text-xl">
-          <strong class="text-white">Zero data leak, zero vendor lock-in.</strong>
-          OpenSAS is the infrastructure you'd build for production AI workloads — if you had a dedicated team and 8 weeks.
-          We give you the blueprint, the integration, and the handover.
-          <strong class="text-white">You keep the keys.</strong>
-        </p>
-
-        <!-- Key differentiators -->
-        <div class="mt-8 flex flex-wrap gap-4">
-          <div class="flex items-center gap-2 text-sm text-deep-400">
-            <svg class="h-4 w-4 text-mesh" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-            </svg>
-            No data leaves your network
+        <!-- Key stats -->
+        <div class="mt-8 grid grid-cols-3 gap-4 border-t border-deep-700/50 pt-8">
+          <div>
+            <div class="stat-number text-2xl sm:text-3xl">0</div>
+            <div class="mt-1 text-xs leading-snug text-deep-400">bytes sent to<br/>third-party servers</div>
           </div>
-          <div class="flex items-center gap-2 text-sm text-deep-400">
-            <svg class="h-4 w-4 text-mesh" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-            </svg>
-            Any open-weight model
+          <div>
+            <div class="stat-number text-2xl sm:text-3xl">6 wks</div>
+            <div class="mt-1 text-xs leading-snug text-deep-400">from kickoff<br/>to production</div>
           </div>
-          <div class="flex items-center gap-2 text-sm text-deep-400">
-            <svg class="h-4 w-4 text-mesh" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-            </svg>
-            6–8 week deployment
+          <div>
+            <div class="stat-number text-2xl sm:text-3xl">100%</div>
+            <div class="mt-1 text-xs leading-snug text-deep-400">open-source<br/>stack — you own it</div>
           </div>
         </div>
 
         <!-- CTAs -->
         <div class="mt-10 flex flex-wrap gap-4">
           <a href="/contact" class="btn-primary text-base">
-            Deploy your first agent in 6 weeks
+            Schedule a discovery call
             <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
           </a>
           <a href="/architecture" class="btn-secondary text-base">
-            See the blueprint
+            See how it works
           </a>
         </div>
       </div>
