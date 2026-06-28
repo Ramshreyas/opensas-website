@@ -85,7 +85,6 @@ code, pre, .mono, .font-mono {
 
 .text-signal {
   color: var(--color-accent);
-  text-shadow: 0 0 40px rgba(245, 158, 11, 0.45), 0 0 80px rgba(245, 158, 11, 0.15);
 }
 
 /* ── Cards — gradient border ── */
