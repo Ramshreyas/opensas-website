@@ -2,69 +2,79 @@
 import StackDiagram from "./StackDiagram.astro";
 ---
 
-<section class="relative overflow-hidden pt-28 pb-16 sm:pt-36 sm:pb-24">
-  <!-- Background grid -->
-  <div class="bg-grid pointer-events-none absolute inset-0 opacity-60" />
+<section class="relative overflow-hidden pt-28 pb-20 sm:pt-36 sm:pb-28">
+  <!-- Grid -->
+  <div class="bg-grid pointer-events-none absolute inset-0 opacity-100" />
 
-  <!-- Gradient glow orbs -->
-  <div class="pointer-events-none absolute top-20 left-1/4 h-96 w-96 -translate-x-1/2 rounded-full bg-accent/5 blur-3xl" />
-  <div class="pointer-events-none absolute top-40 right-1/4 h-80 w-80 rounded-full bg-mesh/5 blur-3xl" />
+  <!-- Subtle amber orb top-left of copy -->
+  <div class="pointer-events-none absolute top-16 left-0 h-[500px] w-[500px] -translate-x-1/3 rounded-full bg-amber-500/5 blur-[100px]" />
+  <!-- Subtle teal orb behind diagram -->
+  <div class="pointer-events-none absolute top-32 right-0 h-[400px] w-[400px] translate-x-1/3 rounded-full bg-teal-500/5 blur-[100px]" />
 
   <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+    <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
+
       <!-- Left: copy -->
       <div class="max-w-xl">
-        <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-deep-600/50 bg-deep-800/50 px-4 py-1.5 text-xs font-medium text-deep-400" style="font-family: 'IBM Plex Sans', sans-serif; letter-spacing: 0.05em; text-transform: uppercase;">
-          <span class="flex h-2 w-2 rounded-full bg-accent" />
+
+        <!-- Badge -->
+        <div class="mb-8 inline-flex items-center gap-2.5 rounded-full px-4 py-1.5"
+          style="background: linear-gradient(135deg, rgba(245,158,11,0.08) 0%, rgba(20,184,166,0.04) 100%); border: 1px solid rgba(245,158,11,0.15); font-family: 'IBM Plex Sans', sans-serif; font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.09em; text-transform: uppercase; color: rgba(245,158,11,0.8);">
+          <span class="flex h-1.5 w-1.5 rounded-full bg-accent" style="box-shadow: 0 0 6px rgba(245,158,11,0.8);"></span>
           Private AI Deployment Service
         </div>
 
-        <h1 class="text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl" style="font-family: 'Syne', sans-serif; letter-spacing: -0.02em;">
-          <span class="text-accent-gradient">Run AI on your</span><br />
-          <span class="text-accent-gradient">own servers.</span><br />
-          <span class="text-accent-gradient">Not theirs.</span>
+        <!-- Headline -->
+        <h1 style="font-family: 'Syne', sans-serif; font-size: clamp(2.5rem, 5vw, 3.5rem); font-weight: 800; line-height: 1.15; letter-spacing: -0.02em;">
+          <span style="display: block; color: white;">Run AI on your own servers.</span>
+          <span class="text-signal" style="display: block; margin-top: 0.1em;">Not theirs.</span>
         </h1>
 
-        <p class="mt-6 text-lg leading-relaxed text-deep-400 sm:text-xl" style="font-family: 'IBM Plex Sans', sans-serif;">
+        <!-- Description -->
+        <p class="mt-6 text-base leading-relaxed sm:text-lg" style="color: var(--color-deep-300); max-width: 30rem;">
           OpenSAS deploys a complete, private AI automation stack on your infrastructure in 6–8 weeks.
-          <strong class="text-deep-200 font-medium">Sensitive data never leaves your network.</strong>
-          No third-party API calls for inference or storage. Your team owns the stack outright when we're done.
+          Sensitive data never leaves your network. Your team owns the stack outright when we're done.
         </p>
 
-        <!-- Key stats -->
-        <div class="mt-8 grid grid-cols-3 gap-4 border-t border-deep-700/50 pt-8">
-          <div>
-            <div class="stat-number text-2xl sm:text-3xl">0</div>
-            <div class="mt-1 text-xs leading-snug text-deep-400">bytes sent to<br/>third-party servers</div>
-          </div>
-          <div>
-            <div class="stat-number text-2xl sm:text-3xl">6 wks</div>
-            <div class="mt-1 text-xs leading-snug text-deep-400">from kickoff<br/>to production</div>
-          </div>
-          <div>
-            <div class="stat-number text-2xl sm:text-3xl">100%</div>
-            <div class="mt-1 text-xs leading-snug text-deep-400">open-source<br/>stack — you own it</div>
-          </div>
+        <!-- Stats -->
+        <div class="mt-8 flex items-stretch gap-0 overflow-hidden rounded-xl"
+          style="border: 1px solid rgba(255,255,255,0.06); background: rgba(13,21,32,0.7);">
+          {[
+            { value: "0", label: "bytes to\nthird parties" },
+            { value: "6 wks", label: "kickoff to\nproduction" },
+            { value: "100%", label: "open-source\nyou own it" },
+          ].map((stat, i) => (
+            <div class="flex flex-1 flex-col items-center justify-center px-4 py-5 text-center"
+              style={i < 2 ? "border-right: 1px solid rgba(255,255,255,0.05);" : ""}>
+              <div class="stat-number" style="font-size: clamp(1.5rem, 3vw, 2rem);">{stat.value}</div>
+              <div class="mt-1.5 whitespace-pre text-center leading-snug"
+                style="font-size: 0.6875rem; color: var(--color-deep-400); font-family: 'IBM Plex Sans', sans-serif;">
+                {stat.label}
+              </div>
+            </div>
+          ))}
         </div>
 
         <!-- CTAs -->
-        <div class="mt-10 flex flex-wrap gap-4">
-          <a href="/contact" class="btn-primary text-base">
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="/contact" class="btn btn-primary text-sm">
             Schedule a discovery call
-            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
           </a>
-          <a href="/architecture" class="btn-secondary text-base">
+          <a href="/architecture" class="btn btn-secondary text-sm">
             See how it works
           </a>
         </div>
+
       </div>
 
       <!-- Right: stack diagram -->
       <div class="lg:justify-self-end">
         <StackDiagram />
       </div>
+
     </div>
   </div>
 </section>

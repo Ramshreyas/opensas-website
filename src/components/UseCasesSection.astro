@@ -2,33 +2,35 @@
 import { useCases } from "../data/use-cases";
 ---
 
-<section id="use-cases" class="border-t border-deep-700/50 py-20 sm:py-28">
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+<section id="use-cases" class="py-20 sm:py-28">
+  <hr class="section-divider" />
+  <div class="mx-auto max-w-7xl px-4 pt-20 sm:px-6 lg:px-8">
     <div class="section-header">
       <h2>Built for real production scenarios</h2>
       <p>
-        Three concrete deployments that OpenSAS handles today. Each eliminates the trade-off
-        between security, flexibility, and time-to-production.
+        Three concrete deployments OpenSAS handles today — each eliminating
+        the trade-off between compliance, flexibility, and speed.
       </p>
     </div>
 
-    <div class="mt-12 grid gap-8 lg:grid-cols-3">
+    <div class="mt-12 grid gap-5 lg:grid-cols-3">
       {useCases.map((uc) => (
-        <article class="card group flex flex-col hover:border-deep-600">
+        <article class="card group flex flex-col">
           <div>
-            <span class="text-[11px] font-medium uppercase tracking-widest text-accent">{uc.industry}</span>
-            <h3 class="mt-2 text-lg font-semibold text-white">{uc.title}</h3>
-            <p class="mt-3 text-sm leading-relaxed text-deep-400">{uc.summary}</p>
+            <span class="font-mono text-[10px] font-semibold uppercase tracking-widest" style="color: var(--color-accent); opacity: 0.75;">{uc.industry}</span>
+            <h3 class="mt-2 text-[0.9375rem] font-semibold leading-snug text-white">{uc.title}</h3>
+            <p class="mt-3 text-sm leading-relaxed" style="color: var(--color-deep-400);">{uc.summary}</p>
           </div>
 
-          <div class="mt-4 flex-1">
-            <p class="text-sm leading-relaxed text-deep-300">{uc.detail}</p>
+          <div class="mt-3 flex-1">
+            <p class="text-sm leading-relaxed" style="color: var(--color-deep-300);">{uc.detail}</p>
           </div>
 
-          <ul class="mt-6 space-y-2 border-t border-deep-700/50 pt-4">
+          <ul class="mt-5 space-y-2 pt-4" style="border-top: 1px solid rgba(255,255,255,0.05);">
             {uc.outcomes.map((outcome) => (
-              <li class="flex gap-2 text-xs text-deep-400">
-                <svg class="mt-0.5 h-3.5 w-3.5 flex-shrink-0 text-mesh" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <li class="flex gap-2.5 text-xs" style="color: var(--color-deep-400);">
+                <svg class="mt-0.5 h-3.5 w-3.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                  style="color: var(--color-mesh);">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                 </svg>
                 {outcome}
@@ -40,7 +42,7 @@ import { useCases } from "../data/use-cases";
     </div>
 
     <div class="mt-10 text-center">
-      <a href="/use-cases" class="btn-secondary">
+      <a href="/use-cases" class="btn btn-secondary text-sm">
         Read detailed case studies
         <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />

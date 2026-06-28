@@ -16,13 +16,14 @@ const problems = [
     number: "03",
     title: "Building it yourself takes months you don't have",
     description:
-      "Assembling a production-grade self-hosted AI stack from scratch — model server, document database, workflow automation, secure access, observability — is a 3–6 month engineering project. Most teams don't have the specialized expertise to do it, or the runway to spend it on infrastructure.",
+      "Assembling a production-grade self-hosted AI stack from scratch — model server, document database, workflow automation, secure access, observability — is a 3–6 month engineering project. Most teams don't have the specialized expertise to do it, or the runway to spend on infrastructure.",
   },
 ];
 ---
 
-<section id="problem" class="border-t border-deep-700/50 py-20 sm:py-28">
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+<section id="problem" class="py-20 sm:py-28">
+  <hr class="section-divider" />
+  <div class="mx-auto max-w-7xl px-4 pt-20 sm:px-6 lg:px-8">
     <div class="section-header">
       <h2>Why most companies get stuck on AI</h2>
       <p>
@@ -31,14 +32,18 @@ const problems = [
       </p>
     </div>
 
-    <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
       {problems.map((problem) => (
-        <div class="card problem-card group">
-          <div class="mb-4 font-mono text-4xl font-bold text-deep-700 leading-none select-none group-hover:text-accent/20 transition-colors duration-300">
+        <div class="card problem-card group flex flex-col gap-4">
+          <div
+            class="font-mono font-bold leading-none select-none transition-colors duration-300"
+            style="font-size: 3rem; color: rgba(245,158,11,0.12); letter-spacing: -0.04em;">
             {problem.number}
           </div>
-          <h3 class="text-base font-semibold text-white leading-snug">{problem.title}</h3>
-          <p class="mt-3 text-sm leading-relaxed text-deep-400">{problem.description}</p>
+          <div>
+            <h3 class="text-[0.9375rem] font-semibold leading-snug text-white">{problem.title}</h3>
+            <p class="mt-2.5 text-sm leading-relaxed" style="color: var(--color-deep-400);">{problem.description}</p>
+          </div>
         </div>
       ))}
     </div>
