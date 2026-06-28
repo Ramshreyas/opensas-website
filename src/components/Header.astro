@@ -1,5 +1,6 @@
 ---
 import { primaryNav } from "../data/navigation";
+import { path } from "../lib/path";
 ---
 
 <header class="fixed top-0 left-0 right-0 z-50"
@@ -7,7 +8,7 @@ import { primaryNav } from "../data/navigation";
   <nav class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
 
     <!-- Logo -->
-    <a href="/" class="flex items-center gap-2.5" style="text-decoration: none;">
+    <a href={path("/")} class="flex items-center gap-2.5" style="text-decoration: none;">
       <div class="flex h-8 w-8 items-center justify-center rounded-md font-mono text-xs font-bold"
         style="background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-hover) 100%); color: #050a0f; box-shadow: 0 2px 8px rgba(245,158,11,0.25);">
         OS
@@ -22,7 +23,7 @@ import { primaryNav } from "../data/navigation";
       {primaryNav.map((item) => (
         <li>
           <a
-            href={item.href}
+            href={path(item.href)}
             class="link-underline text-sm font-medium transition-colors"
             style="color: var(--color-deep-400);"
             onmouseover="this.style.color='white'"
@@ -35,7 +36,7 @@ import { primaryNav } from "../data/navigation";
     </ul>
 
     <!-- Desktop CTA -->
-    <a href="/contact" class="btn btn-primary hidden text-sm md:inline-flex">
+    <a href={path("/contact")} class="btn btn-primary hidden text-sm md:inline-flex">
       Book a discovery call
       <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -56,13 +57,13 @@ import { primaryNav } from "../data/navigation";
     <ul class="flex flex-col gap-3 pt-4">
       {primaryNav.map((item) => (
         <li>
-          <a href={item.href} class="block text-sm font-medium transition-colors" style="color: var(--color-deep-400);">
+          <a href={path(item.href)} class="block text-sm font-medium transition-colors" style="color: var(--color-deep-400);">
             {item.label}
           </a>
         </li>
       ))}
       <li class="pt-1">
-        <a href="/contact" class="btn btn-primary w-full justify-center text-sm">
+        <a href={path("/contact")} class="btn btn-primary w-full justify-center text-sm">
           Book a discovery call
           <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />

@@ -1,4 +1,5 @@
 ---
+import { path } from "../lib/path";
 ---
 
 <section class="py-20 sm:py-28">
@@ -31,13 +32,13 @@
       </p>
 
       <div class="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-        <a href="/contact" class="btn btn-primary text-sm">
+        <a href={path("/contact")} class="btn btn-primary text-sm">
           Schedule a discovery call
           <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
           </svg>
         </a>
-        <a href="/architecture" class="btn btn-secondary text-sm">
+        <a href={path("/architecture")} class="btn btn-secondary text-sm">
           Read the architecture
         </a>
       </div>

@@ -1,5 +1,6 @@
 ---
 import { primaryNav } from "../data/navigation";
+import { path } from "../lib/path";
 ---
 
 <footer class="border-t border-deep-700/50 bg-deep-900">
@@ -7,7 +8,7 @@ import { primaryNav } from "../data/navigation";
     <div class="grid gap-8 sm:grid-cols-3">
       <!-- Brand -->
       <div>
-        <a href="/" class="flex items-center gap-2 text-lg font-bold text-white">
+        <a href={path("/")} class="flex items-center gap-2 text-lg font-bold text-white">
           <span class="flex h-8 w-8 items-center justify-center rounded-md bg-accent text-xs font-bold text-deep-900">
             OS
           </span>
@@ -24,7 +25,7 @@ import { primaryNav } from "../data/navigation";
         <ul class="mt-4 space-y-2">
           {primaryNav.map((item) => (
             <li>
-              <a href={item.href} class="text-sm text-deep-400 transition-colors hover:text-white">
+              <a href={path(item.href)} class="text-sm text-deep-400 transition-colors hover:text-white">
                 {item.label}
               </a>
             </li>
@@ -36,11 +37,11 @@ import { primaryNav } from "../data/navigation";
       <div>
         <h4 class="text-xs font-semibold uppercase tracking-widest text-deep-400">Get started</h4>
         <div class="mt-4 space-y-3">
-          <a href="/contact" class="btn btn-primary text-sm">
+          <a href={path("/contact")} class="btn btn-primary text-sm">
             Schedule a discovery call
           </a>
           <br />
-          <a href="/architecture" class="text-sm text-deep-400 transition-colors hover:text-white">
+          <a href={path("/architecture")} class="text-sm text-deep-400 transition-colors hover:text-white">
             Read the architecture →
           </a>
         </div>

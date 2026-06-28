@@ -1,5 +1,6 @@
 ---
 import { faqItems } from "../data/faq";
+import { path } from "../lib/path";
 ---
 
 <section id="faq" class="py-20 sm:py-28">
@@ -34,7 +35,7 @@ import { faqItems } from "../data/faq";
     </div>
 
     <p class="mt-8 text-center text-sm" style="color: var(--color-deep-500);">
-      More technical questions? <a href="/architecture#faq" class="transition-colors hover:text-white" style="color: var(--color-deep-400);">See the architecture FAQ →</a>
+      More technical questions? <a href={path("/architecture#faq")} class="transition-colors hover:text-white" style="color: var(--color-deep-400);">See the architecture FAQ →</a>
     </p>
   </div>
 </section>
