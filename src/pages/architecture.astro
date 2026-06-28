@@ -3,45 +3,217 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { stackLayers } from "../data/stack";
+import { technicalFaqItems } from "../data/technical-faq";
+
+const technicalUseCases = [
+  {
+    title: "Regulated Industry — Compliance Automation",
+    industry: "Financial Services / Healthcare / Legal",
+    stack: [
+      "vLLM serves the LLM on your own GPUs — no inference API calls leave the network",
+      "MinIO stores all documents and embeddings in S3-compatible object storage, fully on-prem",
+      "n8n orchestrates the review pipeline: ingest → chunk → embed → retrieve → generate → route",
+      "Teleport provides audit-grade access to every cluster resource with session recording",
+      "OpenBao manages encryption keys and secrets; no plaintext credentials in environment variables",
+      "Zero bytes of document content, PII, or model output touch the public internet",
+    ],
+    outcomes: [
+      "Full audit trail of every agent action (Teleport session logs + OpenTelemetry traces)",
+      "Satisfies GDPR Article 28, HIPAA §164.312, and SOC 2 data residency requirements",
+      "Swap models (Llama → Mistral → Qwen) without modifying the compliance workflow",
+    ],
+  },
+  {
+    title: "Internal Developer Platform — AI-Augmented Tooling",
+    industry: "Platform Engineering / Software Development",
+    stack: [
+      "MCP servers connect the LLM to internal git repos, observability stacks, and ticketing systems",
+      "LiteLLM routes requests across locally-hosted models with a unified OpenAI-compatible API",
+      "Langfuse traces every prompt and response for debugging, cost attribution, and eval",
+      "Engineers interact via IDE extensions, Slack bots, or CLI — all pointing at the internal gateway",
+      "Source code and internal docs never leave your network at any point in the request path",
+      "Model swaps (e.g. Llama 3 70B → Qwen 2.5 Coder) require only a LiteLLM config change",
+    ],
+    outcomes: [
+      "Proprietary source code never traverses a third-party API endpoint",
+      "Engineers use familiar tooling with AI capabilities layered on top",
+      "Full cost attribution per team/project via Langfuse + Grafana dashboards",
+    ],
+  },
+  {
+    title: "Multi-Tenant AI Sandbox — MSPs and Consulting Firms",
+    industry: "Consulting / Professional Services / MSPs",
+    stack: [
+      "Kubernetes namespaces enforce compute and memory quotas per tenant",
+      "Qdrant collections are strictly per-tenant — no cross-collection queries possible",
+      "Teleport roles map to per-client access boundaries — client A cannot reach client B's resources",
+      "MinIO buckets use IAM policies to enforce per-tenant object-level isolation",
+      "Each tenant gets a dedicated LibreChat instance and auth domain",
+      "Single GPU node pool shared across tenants with per-namespace resource limits",
+    ],
+    outcomes: [
+      "Provable tenant isolation across every stack layer — storage, compute, and access",
+      "One infrastructure pool serving 20–50 isolated client environments",
+      "Clients get dedicated UIs and access controls at near-zero marginal infrastructure cost",
+    ],
+  },
+];
+
+const deploymentSteps = [
+  {
+    week: "1–2",
+    title: "Architecture Assessment & Security Review",
+    items: [
+      "Audit your existing infrastructure: network topology, GPU availability, storage tier, and identity provider",
+      "Define the target architecture — which models, which layers, which access controls match your workload",
+      "Threat model the deployment: data flows, trust boundaries, encryption requirements, and audit scope",
+      "Deliver a detailed architecture document and deployment plan for your team's review and sign-off",
+    ],
+  },
+  {
+    week: "3–4",
+    title: "Infrastructure Provisioning & Full Stack Deployment",
+    items: [
+      "Deploy the full OpenSAS stack in your environment — K8s, Teleport mesh, every layer, every component",
+      "Helm charts, Kustomize overlays, and IaC templates (Terraform/OpenTofu) are committed to your GitOps repo",
+      "Configure GitOps pipeline (Argo CD or Flux) so all future changes are declarative and auditable",
+      "End-to-end integration tests verify every component — vLLM inference, vector search, workflow triggers, access controls",
+    ],
+  },
+  {
+    week: "5–6",
+    title: "Workflow Development & Team Handover",
+    items: [
+      "Build your first 3 production workflows in n8n (or MCP servers / FastAPI agents as needed)",
+      "Hands-on training with your engineers: day-2 operations, Helm upgrades, GPU scaling, and troubleshooting runbooks",
+      "Full documentation package: architecture diagrams, component runbooks, incident response procedures, and upgrade playbooks",
+      "Langfuse dashboards and Grafana alerting configured for your SLOs",
+    ],
+  },
+  {
+    week: "7–8",
+    title: "Go-Live & Post-Deployment Support",
+    items: [
+      "Production cutover with your team in control — they drive, we advise",
+      "Performance benchmarks established: tokens/second, p95 latency, GPU utilization baselines, and cost per request",
+      "Velero backup/restore verified; HA failover tested under load",
+      "Optional retainer begins for ongoing workflow development and version upgrades — no forced subscription",
+    ],
+  },
+];
 ---
 
 <BaseLayout
-  title="Architecture — OpenSAS"
-  description="Full layer-by-layer breakdown of the OpenSAS five-layer stack: Mesh, Infrastructure, Data, Orchestration, and Interfaces."
+  title="OpenSAS Stack Architecture — Technical Blueprint for Engineers"
+  description="Five-layer self-hosted AI stack: LLM inference, vector search, workflow automation, secure access, and observability. Component rationale, deployment process, and technical FAQ."
 >
   <Header />
   <main>
     <!-- Hero -->
-    <section class="pt-28 pb-16 sm:pt-36 sm:pb-20">
-      <div class="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
-        <div class="mb-4 inline-flex items-center gap-2 rounded-full border border-deep-600/50 bg-deep-800/50 px-4 py-1.5 text-xs font-medium text-deep-400">
+    <section class="relative overflow-hidden pt-28 pb-16 sm:pt-36 sm:pb-20">
+      <div class="bg-grid pointer-events-none absolute inset-0 opacity-40" />
+      <div class="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+        <div class="mb-4 inline-flex items-center gap-2 rounded-full border border-deep-600/50 bg-deep-800/50 px-4 py-1.5 text-xs font-medium text-deep-400" style="letter-spacing: 0.05em; text-transform: uppercase; font-family: 'Plus Jakarta Sans', sans-serif;">
           <span class="flex h-2 w-2 rounded-full bg-accent" />
-          Technical Deep-Dive
+          Technical Blueprint
         </div>
-        <h1 class="text-4xl font-extrabold text-white sm:text-5xl">The OpenSAS Stack</h1>
+        <h1 class="text-4xl font-bold text-white sm:text-5xl" style="font-family: 'Plus Jakarta Sans', sans-serif; letter-spacing: -0.015em; line-height: 1.15;">
+          The OpenSAS Stack
+        </h1>
         <p class="mt-4 text-lg text-deep-400 max-w-2xl mx-auto">
-          Five layers, from the connectivity fabric up to user-facing interfaces.
-          Every layer is independently deployable, composable, and built from open-source components.
+          For engineers evaluating the stack. Everything you need: component selection rationale,
+          deployment process, use case implementations, HA design, and a technical FAQ.
+          The homepage covers the business case — this page covers the engineering.
         </p>
+        <div class="mt-6">
+          <a href="/" class="text-sm text-deep-400 hover:text-white transition-colors">
+            ← Back to overview
+          </a>
+        </div>
       </div>
     </section>
 
-    <!-- Layer-by-layer breakdown -->
-    <section class="pb-20 sm:pb-28">
+    <!-- Why These Components -->
+    <section class="border-t border-deep-700/50 py-16 sm:py-20">
       <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-        <div class="space-y-12">
+        <div class="section-header">
+          <h2>Why This Stack</h2>
+          <p>
+            Every component was chosen for a specific reason: open-source license, operational maturity,
+            and fit with the security model. Here's the engineering rationale.
+          </p>
+        </div>
+
+        <div class="mt-10 space-y-3">
+          {[
+            {
+              component: "vLLM",
+              why: "PagedAttention gives 2–10x throughput over naive Transformers serving. Continuous batching. Tensor parallelism across GPUs. The de-facto standard for production open-weight model serving.",
+            },
+            {
+              component: "LiteLLM",
+              why: "Unified OpenAI-compatible gateway in front of multiple backends. Swap models without touching application code. Built-in rate limiting, cost tracking, and fallback routing.",
+            },
+            {
+              component: "Qdrant",
+              why: "Purpose-built vector database with HNSW indexing, payload filtering, and distributed mode. Handles billion-scale vector collections with sub-10ms retrieval. Rust core — low memory overhead.",
+            },
+            {
+              component: "n8n",
+              why: "400+ connectors, visual workflow editor, self-hosted with a PostgreSQL backend. LLM nodes work out of the box via the LiteLLM gateway. Full OpenTelemetry instrumentation on every execution.",
+            },
+            {
+              component: "Teleport",
+              why: "Identity-aware access plane for SSH, K8s API, databases, and web apps. Session recording, audit logs, MFA enforcement, and SSO integration — all in one. No VPN required.",
+            },
+            {
+              component: "OpenBao",
+              why: "Community fork of HashiCorp Vault (Apache 2.0). Dynamic secrets, transit encryption, PKI, and Kubernetes auth. Secrets are never stored in environment variables or ConfigMaps.",
+            },
+            {
+              component: "MinIO",
+              why: "S3-compatible object storage deployable on bare metal. Erasure coding for data durability. Serves model artifacts, document stores, and embedding snapshots — all on your hardware.",
+            },
+            {
+              component: "Grafana + Prometheus + Loki",
+              why: "The standard self-hosted observability stack. Pre-built dashboards for GPU utilization, token throughput, latency, and cost per user. Integrates with your existing alerting infrastructure.",
+            },
+          ].map((item) => (
+            <div class="flex gap-4 rounded-lg border border-deep-700 bg-deep-800/30 p-4">
+              <div class="flex-shrink-0 w-28">
+                <span class="font-mono text-sm font-semibold text-accent">{item.component}</span>
+              </div>
+              <p class="text-sm leading-relaxed text-deep-400">{item.why}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Five-Layer Stack -->
+    <section class="border-t border-deep-700/50 py-16 sm:py-20">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <div class="section-header">
+          <h2>Five-Layer Architecture</h2>
+          <p>
+            Each layer is independently deployable and composable. Don't need a chat UI?
+            Skip Layer 4. Only need vector search and model serving? Start with Layers 0–2.
+          </p>
+        </div>
+
+        <div class="mt-10 space-y-12">
           {stackLayers.map((layer) => (
             <article id={`layer-${layer.id}`} class="scroll-mt-24">
               <div class="card">
                 <div class="flex items-center gap-4">
                   <div
-                    class="flex h-10 w-10 items-center justify-center rounded-lg text-base font-bold text-white"
-                    style="background-color: {layer.color}"
+                    class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg font-mono text-base font-bold text-white"
+                    style={`background-color: ${layer.color}`}
                   >
                     {layer.id}
                   </div>
                   <div>
-                    <h2 class="text-xl font-bold text-white">{layer.name}</h2>
+                    <h3 class="text-xl font-bold text-white">{layer.name}</h3>
                     <p class="text-sm text-deep-400">{layer.description}</p>
                   </div>
                 </div>
@@ -49,7 +221,7 @@ import { stackLayers } from "../data/stack";
                 <!-- Tools -->
                 <div class="mt-6 flex flex-wrap gap-2">
                   {layer.tools.map((tool) => (
-                    <span class="rounded-md border border-deep-600 bg-deep-700/50 px-3 py-1 text-xs font-medium text-deep-200">
+                    <span class="rounded-md border border-deep-600 bg-deep-700/50 px-3 py-1 font-mono text-xs font-medium text-deep-200">
                       {tool}
                     </span>
                   ))}
@@ -60,8 +232,8 @@ import { stackLayers } from "../data/stack";
                   {layer.details.map((detail) => (
                     <li class="flex gap-3 text-sm leading-relaxed text-deep-300">
                       <span
-                        class="mt-1 block h-2 w-2 flex-shrink-0 rounded-full"
-                        style="background-color: {layer.color}"
+                        class="mt-1.5 block h-2 w-2 flex-shrink-0 rounded-full"
+                        style={`background-color: ${layer.color}`}
                       />
                       {detail}
                     </li>
@@ -69,7 +241,6 @@ import { stackLayers } from "../data/stack";
                 </ul>
               </div>
 
-              <!-- Cross-layer dependencies -->
               {layer.id > 0 && (
                 <div class="mt-3 flex items-center gap-2 pl-14">
                   <svg class="h-4 w-4 text-deep-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -83,44 +254,233 @@ import { stackLayers } from "../data/stack";
             </article>
           ))}
         </div>
+      </div>
+    </section>
 
-        <!-- Architecture principles -->
-        <div class="mt-16">
-          <h3 class="text-lg font-semibold text-white">Architecture Principles</h3>
-          <div class="mt-4 grid gap-4 sm:grid-cols-2">
-            {[
-              {
-                title: "Composable",
-                desc: "Each layer can be deployed independently. Don't need a chat UI? Skip Layer 4. Only need vector search? Start with Layer 2.",
-              },
-              {
-                title: "Auditable",
-                desc: "Every component produces structured logs. Teleport session recording, OpenBao audit trails, and OpenTelemetry tracing provide complete observability.",
-              },
-              {
-                title: "Portable",
-                desc: "No cloud-specific dependencies. Deploy on K8s, raw VPS, or bare metal. Works in air-gapped environments. Migrate between infrastructure providers without stack changes.",
-              },
-              {
-                title: "Upgradable",
-                desc: "Each component is independently versioned and upgradable. Rolling upgrades with zero downtime. We provide upgrade playbooks as part of the engagement.",
-              },
-            ].map((principle) => (
-              <div class="rounded-lg border border-deep-700 bg-deep-800/30 p-4">
-                <h4 class="text-sm font-semibold text-white">{principle.title}</h4>
-                <p class="mt-1 text-xs text-deep-400">{principle.desc}</p>
+    <!-- Architecture Principles -->
+    <section class="border-t border-deep-700/50 py-16 sm:py-20">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <div class="section-header">
+          <h2>Architecture Principles</h2>
+          <p>Design constraints that shaped every component choice.</p>
+        </div>
+
+        <div class="mt-10 grid gap-4 sm:grid-cols-2">
+          {[
+            {
+              title: "Composable",
+              desc: "Each layer deploys independently. Skip what you don't need. Add layers as requirements evolve. No forced all-or-nothing install.",
+            },
+            {
+              title: "Auditable",
+              desc: "Every component produces structured logs. Teleport session recording, OpenBao audit trails, and OpenTelemetry tracing give you a complete, queryable record of every action.",
+            },
+            {
+              title: "Portable",
+              desc: "No cloud-specific dependencies. Deploy on managed K8s (EKS/AKS/GKE), bare metal, or air-gapped on-premises clusters. Migrate between providers without stack changes.",
+            },
+            {
+              title: "Upgradable",
+              desc: "Every component is independently versioned and upgradable via Helm. We provide upgrade playbooks and test them before each engagement. Rolling upgrades, zero downtime.",
+            },
+            {
+              title: "No egress",
+              desc: "The stack is designed from the ground up with the assumption that no traffic crosses the network boundary. Every external dependency has a self-hosted equivalent deployed alongside it.",
+            },
+            {
+              title: "GitOps-native",
+              desc: "All configuration lives in a Git repo. Argo CD or Flux reconciles desired state. Every change is a commit — auditable, reversible, and reviewable by your team.",
+            },
+          ].map((principle) => (
+            <div class="rounded-lg border border-deep-700 bg-deep-800/30 p-4 transition-colors hover:border-deep-600">
+              <h4 class="text-sm font-semibold text-white">{principle.title}</h4>
+              <p class="mt-1 text-xs leading-relaxed text-deep-400">{principle.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Deployment Process (Technical) -->
+    <section class="border-t border-deep-700/50 py-16 sm:py-20">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <div class="section-header">
+          <h2>Deployment Process</h2>
+          <p>What actually happens during the 6–8 week engagement, week by week.</p>
+        </div>
+
+        <div class="mt-10 relative">
+          <div class="absolute top-0 bottom-0 left-[18px] hidden w-px bg-gradient-to-b from-accent via-mesh to-deep-600 md:block" />
+
+          <div class="space-y-8 md:space-y-12">
+            {deploymentSteps.map((step) => (
+              <div class="relative md:flex md:gap-8">
+                <div class="flex items-center gap-4 md:w-32 md:flex-col md:items-start md:gap-1">
+                  <div class="relative z-10 flex h-9 w-9 items-center justify-center rounded-full bg-accent font-mono text-xs font-bold text-deep-900 shadow-lg shadow-accent/20 md:h-10 md:w-10">
+                    {step.week}
+                  </div>
+                  <span class="text-xs font-semibold uppercase tracking-wider text-accent md:text-[10px]">
+                    Week {step.week}
+                  </span>
+                </div>
+
+                <div class="mt-3 flex-1 md:mt-0">
+                  <div class="card">
+                    <h3 class="text-base font-semibold text-white">{step.title}</h3>
+                    <ul class="mt-3 space-y-2">
+                      {step.items.map((item) => (
+                        <li class="flex gap-2 text-sm text-deep-400">
+                          <span class="mt-1.5 block h-1.5 w-1.5 flex-shrink-0 rounded-full bg-accent/40" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
         </div>
 
-        <!-- CTA -->
-        <div class="mt-12 rounded-xl border border-deep-700 bg-deep-800/30 p-6 text-center">
-          <p class="text-sm text-deep-400">
-            Want to see how this stack maps to your infrastructure?
+        <!-- Deliverables -->
+        <div class="mt-16">
+          <h3 class="text-center text-lg font-semibold text-white">What your team receives at handover</h3>
+          <div class="mt-6 grid gap-4 sm:grid-cols-2">
+            {[
+              {
+                label: "GitOps Repository",
+                items: ["Helm charts for every component", "Kustomize overlays per environment", "Terraform/OpenTofu infrastructure modules", "Argo CD / Flux configuration"],
+              },
+              {
+                label: "Security Package",
+                items: ["Teleport configuration and RBAC policies", "OpenBao secret paths and access policies", "Network policy manifests", "Threat model document"],
+              },
+              {
+                label: "Operations Runbooks",
+                items: ["Day-2 operations guide", "GPU scaling and node management", "Component upgrade playbooks", "Incident response procedures"],
+              },
+              {
+                label: "Observability Dashboards",
+                items: ["Grafana dashboards (GPU, latency, cost)", "Prometheus alerting rules", "Langfuse eval setup", "Log retention and query examples"],
+              },
+            ].map((pkg) => (
+              <div class="rounded-lg border border-deep-700 bg-deep-800/30 p-4">
+                <h4 class="text-sm font-semibold text-white">{pkg.label}</h4>
+                <ul class="mt-3 space-y-1.5">
+                  {pkg.items.map((item) => (
+                    <li class="flex gap-2 text-xs text-deep-400">
+                      <span class="mt-1 block h-1.5 w-1.5 flex-shrink-0 rounded-full bg-mesh" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Technical Use Cases -->
+    <section class="border-t border-deep-700/50 py-16 sm:py-20">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <div class="section-header">
+          <h2>Use Cases — Implementation Detail</h2>
+          <p>
+            How each deployment actually works at the component level.
           </p>
-          <a href="/contact" class="btn-primary mt-3 inline-flex">
+        </div>
+
+        <div class="mt-10 space-y-8">
+          {technicalUseCases.map((uc) => (
+            <article class="card">
+              <div class="mb-4">
+                <span class="text-[11px] font-medium uppercase tracking-widest text-accent">{uc.industry}</span>
+                <h3 class="mt-1 text-lg font-semibold text-white">{uc.title}</h3>
+              </div>
+
+              <div class="grid gap-6 lg:grid-cols-2">
+                <div>
+                  <h4 class="mb-3 text-xs font-semibold uppercase tracking-wider text-deep-400">Stack implementation</h4>
+                  <ul class="space-y-2">
+                    {uc.stack.map((item) => (
+                      <li class="flex gap-2 text-sm text-deep-300">
+                        <span class="mt-1.5 block h-1.5 w-1.5 flex-shrink-0 rounded-full bg-accent/60" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 class="mb-3 text-xs font-semibold uppercase tracking-wider text-deep-400">Outcomes</h4>
+                  <ul class="space-y-2">
+                    {uc.outcomes.map((outcome) => (
+                      <li class="flex gap-2 text-sm text-deep-400">
+                        <svg class="mt-0.5 h-3.5 w-3.5 flex-shrink-0 text-mesh" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        {outcome}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Technical FAQ -->
+    <section class="border-t border-deep-700/50 py-16 sm:py-20">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <div class="section-header">
+          <h2>Technical FAQ</h2>
+          <p>Detailed answers for engineers evaluating the stack.</p>
+        </div>
+
+        <div class="mt-10 space-y-3">
+          {technicalFaqItems.map((item) => (
+            <details class="group rounded-xl border border-deep-700 bg-deep-800/30 transition-colors hover:border-deep-600">
+              <summary class="flex cursor-pointer items-center justify-between gap-4 p-5 text-sm font-medium text-white">
+                <span>{item.question}</span>
+                <svg
+                  class="h-4 w-4 flex-shrink-0 text-deep-400 transition-transform duration-200 group-open:rotate-45"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                </svg>
+              </summary>
+              <div class="border-t border-deep-700/50 px-5 pb-5 pt-3">
+                <p class="text-sm leading-relaxed text-deep-400">{item.answer}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="border-t border-deep-700/50 py-16 sm:py-20">
+      <div class="mx-auto max-w-2xl px-4 text-center sm:px-6 lg:px-8">
+        <h2 class="text-2xl font-bold text-white" style="font-family: 'Plus Jakarta Sans', sans-serif;">
+          Want to see this mapped to your environment?
+        </h2>
+        <p class="mt-3 text-deep-400">
+          Schedule a discovery call. First session is a free architecture assessment — we'll map the stack to your specific infrastructure, compliance requirements, and workload.
+        </p>
+        <div class="mt-6 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+          <a href="/contact" class="btn btn-primary">
             Schedule a discovery call
+            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+          <a href="/" class="btn btn-secondary">
+            ← Back to overview
           </a>
         </div>
       </div>

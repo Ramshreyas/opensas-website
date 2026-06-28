@@ -5,43 +5,43 @@ export interface FAQItem {
 
 export const faqItems: FAQItem[] = [
   {
-    question: "What are the minimum deployment requirements?",
+    question: "Who is OpenSAS for?",
     answer:
-      "For a production deployment, you need a Kubernetes cluster (3+ nodes), at least one NVIDIA GPU (A10G or better — vLLM requirement), and sufficient storage for your model weights and vector database. We'll assess your specific workload during the discovery call and right-size the infrastructure. A single-node setup is possible for development/evaluation.",
+      "OpenSAS is built for engineering teams at mid-sized companies — typically 50 to 500 people — who need to run AI automation on data they can't send to a third-party service. Our most common clients are in financial services, healthcare, legal, and professional services, or are platform engineering teams building internal AI tooling. If your compliance team has raised concerns about AI data exposure, or you're tired of being subject to unpredictable API pricing changes, we're probably a good fit.",
   },
   {
-    question: "Can I deploy OpenSAS in an air-gapped environment?",
+    question: "What does it cost?",
     answer:
-      "Yes. The entire stack can operate without any internet connectivity. WireGuard handles mesh networking, container images are pre-loaded via a local registry, and model weights are transferred via physical media if needed. Teleport can operate in proxy mode or direct mode depending on your network topology.",
+      "You pay a fixed fee for the consulting engagement — architecture design, deployment, and training. There are no per-seat, per-token, or model license fees. Every component in the stack is open-source. Your only ongoing costs are your own servers, GPUs, and storage — infrastructure you already budget for. Schedule a discovery call and we'll scope a quote based on your specific environment.",
   },
   {
-    question: "Which models does OpenSAS support?",
+    question: "What infrastructure do I need to get started?",
     answer:
-      "Any open-weight model supported by vLLM — Llama 2/3, Mistral, Mixtral, Qwen, DeepSeek, Phi, Gemma, and hundreds more from Hugging Face. LiteLLM adds a compatibility layer so you can swap models without changing your application code. Fine-tuned models are supported via the same pipeline.",
+      "For a production deployment you need a Kubernetes cluster (3 or more servers), at least one NVIDIA GPU (A10G or better) to run AI models locally, and sufficient storage for model files and your document database. We assess your specific workload during the discovery call and right-size everything. A single-server setup is possible for evaluation and proof-of-concept work.",
   },
   {
-    question: "How long does deployment take?",
+    question: "Can I deploy OpenSAS in a fully offline environment?",
     answer:
-      "The initial engagement is 6-8 weeks. Week 1-2: architecture assessment and security review. Week 3-4: infrastructure provisioning and stack deployment in your environment. Week 5-6: workflow development, integration testing, and team handover. Week 7-8: documentation, training, and go-live support.",
+      "Yes. The entire stack can run with zero internet connectivity. All networking is handled by an open-source mesh layer, container images are pre-loaded to a local registry, and model files can be transferred via physical media if your environment requires it. We've deployed in air-gapped environments with strict no-internet policies.",
   },
   {
-    question: "What happens after handover? Can your team support us?",
+    question: "Which AI models does OpenSAS support?",
     answer:
-      "Your team owns and operates the stack independently post-handover. We provide comprehensive documentation and hands-on training during the engagement. Optional retainers are available for workflow development, performance optimization, and version upgrades — but there's no forced subscription.",
+      "Any open-source AI model — including Llama 3, Mistral, Mixtral, Qwen, DeepSeek, Phi, Gemma, and hundreds more. A compatibility layer lets you swap models without changing your application code. Fine-tuned models work through the same pipeline.",
   },
   {
-    question: "What's the pricing model?",
+    question: "How long does the deployment take?",
     answer:
-      "You pay for the consulting engagement (architecture, deployment, training). There are no per-seat, per-token, or per-model license fees — every component is open-source or open-core. Your only ongoing costs are your infrastructure (VPS, GPU, storage) which you already budget for. Schedule a discovery call for a quote tailored to your environment.",
+      "The standard engagement runs 6–8 weeks. Weeks 1–2: architecture design and security review. Weeks 3–4: full stack deployment in your environment. Weeks 5–6: AI workflow development, integration testing, and team handover. Weeks 7–8: documentation, hands-on training, and production go-live support.",
   },
   {
-    question: "How does OpenSAS handle high availability and disaster recovery?",
+    question: "What happens after handover? Do we have to stay on retainer?",
     answer:
-      "The stack is designed for K8s-native HA. vLLM supports multi-GPU and multi-node serving with automatic failover. Qdrant and PostgreSQL support replication. MinIO uses erasure coding. Teleport provides HA control plane. Your SRE team manages backup/restore through standard K8s tooling (Velero, etc.) — we provide the configuration templates.",
+      "No forced subscription. Your team owns and operates the stack independently after handover. We provide comprehensive documentation and hands-on training so your engineers can manage it themselves. Optional retainers are available for new workflow development, performance tuning, and version upgrades — entirely your choice.",
   },
   {
-    question: "Can I use OpenSAS with cloud-managed K8s (EKS, AKS, GKE)?",
+    question: "Does OpenSAS work with our existing cloud infrastructure?",
     answer:
-      "Absolutely. The Helm charts and deployment scripts work on any CNCF-compliant Kubernetes — including EKS, AKS, GKE, OpenShift, and on-prem distributions. The stack has no cloud-specific dependencies. We recommend bare-metal or VPS for GPU cost efficiency, but managed K8s works if your team prefers it.",
+      "Yes. The deployment scripts work on any standard Kubernetes cluster — including Amazon EKS, Azure AKS, Google GKE, and on-premises distributions. There are no cloud-specific dependencies. We recommend bare-metal or dedicated servers for GPU cost efficiency, but managed Kubernetes works if your team prefers it.",
   },
 ];

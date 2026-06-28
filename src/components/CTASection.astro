@@ -1,50 +1,49 @@
 ---
 ---
 
-<section class="border-t border-deep-700/50 py-20 sm:py-28">
-  <div class="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
-    <!-- Glow container -->
-    <div class="relative rounded-2xl border border-deep-700 bg-deep-800/50 p-8 sm:p-12 glow-accent">
-      <!-- Decorative corner accents -->
-      <div class="pointer-events-none absolute top-0 left-0 h-24 w-24">
-        <div class="absolute top-0 left-0 h-8 w-px bg-accent/30" />
-        <div class="absolute top-0 left-0 h-px w-8 bg-accent/30" />
-      </div>
-      <div class="pointer-events-none absolute top-0 right-0 h-24 w-24">
-        <div class="absolute top-0 right-0 h-8 w-px bg-accent/30" />
-        <div class="absolute top-0 right-0 h-px w-8 bg-accent/30" />
-      </div>
-      <div class="pointer-events-none absolute bottom-0 left-0 h-24 w-24">
-        <div class="absolute bottom-0 left-0 h-8 w-px bg-accent/30" />
-        <div class="absolute bottom-0 left-0 h-px w-8 bg-accent/30" />
-      </div>
-      <div class="pointer-events-none absolute bottom-0 right-0 h-24 w-24">
-        <div class="absolute bottom-0 right-0 h-8 w-px bg-accent/30" />
-        <div class="absolute bottom-0 right-0 h-px w-8 bg-accent/30" />
+<section class="py-20 sm:py-28">
+  <hr class="section-divider" />
+  <div class="mx-auto max-w-3xl px-4 pt-20 text-center sm:px-6 lg:px-8">
+    <div class="relative rounded-2xl p-8 sm:p-12 glow-accent"
+      style="background: linear-gradient(var(--color-deep-800), var(--color-deep-800)) padding-box, linear-gradient(135deg, rgba(245,158,11,0.2) 0%, rgba(20,184,166,0.08) 100%) border-box; border: 1px solid transparent;">
+
+      <!-- Corner marks -->
+      {["top-0 left-0", "top-0 right-0", "bottom-0 left-0", "bottom-0 right-0"].map((pos) => (
+        <div class={`pointer-events-none absolute ${pos} h-6 w-6`}>
+          <div class="absolute inset-0" style="
+            background: conic-gradient(from 0deg, transparent 0deg, transparent 270deg, rgba(245,158,11,0.3) 270deg);
+            border-radius: 0;
+          "></div>
+        </div>
+      ))}
+
+      <div class="mb-3 font-mono text-xs font-semibold uppercase tracking-widest" style="color: rgba(245,158,11,0.6);">
+        Get started
       </div>
 
-      <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-        Deploy your first agent in 6 weeks
+      <h2 class="text-2xl font-bold text-white sm:text-3xl" style="font-family: 'Plus Jakarta Sans', sans-serif; letter-spacing: -0.025em; line-height: 1.2;">
+        Get your private AI stack<br class="hidden sm:block"/>in 6–8 weeks
       </h2>
-      <p class="mx-auto mt-4 max-w-lg text-lg text-deep-400">
+
+      <p class="mx-auto mt-4 max-w-md text-[0.9375rem] leading-relaxed" style="color: var(--color-deep-400);">
         No data leaves your network. No vendor lock-in. Your team owns the stack at the end.
-        Schedule a discovery call and we'll map your architecture in the first session.
+        First call is a free architecture assessment — no commitment required.
       </p>
 
-      <div class="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-        <a href="/contact" class="btn-primary text-base">
+      <div class="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+        <a href="/contact" class="btn btn-primary text-sm">
           Schedule a discovery call
-          <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
           </svg>
         </a>
-        <a href="/architecture" class="btn-secondary text-base">
-          Download the one-pager
+        <a href="/architecture" class="btn btn-secondary text-sm">
+          Read the architecture
         </a>
       </div>
 
-      <p class="mt-6 text-xs text-deep-500">
-        No commitment required. We'll share a detailed architecture assessment after the first call.
+      <p class="mt-5 text-xs" style="color: var(--color-deep-500);">
+        No sales pressure — we'll map your architecture in the first session and give you an honest assessment of fit.
       </p>
     </div>
   </div>

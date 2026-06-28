@@ -2,78 +2,82 @@
 const steps = [
   {
     week: "1–2",
-    title: "Architecture Assessment & Security Review",
+    title: "We design your private AI architecture",
     items: [
-      "We audit your existing infrastructure, network topology, and security requirements.",
-      "We define the target architecture: which models, which tools, which access controls.",
-      "You get a detailed architecture document and deployment plan.",
+      "We map your existing infrastructure, compliance requirements, and the workflows you want to automate.",
+      "We select the right AI models and components for your specific workload — not a one-size-fits-all configuration.",
+      "You receive a detailed architecture document and deployment plan to review and approve before we build anything.",
     ],
   },
   {
     week: "3–4",
-    title: "Infrastructure Provisioning & Stack Deployment",
+    title: "We deploy everything in your environment",
     items: [
-      "We deploy the full OpenSAS stack in your environment — K8s, Teleport mesh, every layer.",
-      "Helm charts, automated scripts, and IaC templates are left with your team.",
-      "Integration tests verify every component end-to-end.",
+      "We install and configure the full stack inside your own infrastructure — nothing is hosted on our servers.",
+      "All deployment templates, configuration files, and automation scripts are handed over to your team.",
+      "End-to-end tests confirm every component is working before we move to the next phase.",
     ],
   },
   {
     week: "5–6",
-    title: "Workflow Development & Team Handover",
+    title: "We build your first AI workflows",
     items: [
-      "We build your first 3 production workflows in n8n (or MCP/FastAPI as needed).",
-      "Your team receives hands-on training: day-2 operations, troubleshooting, upgrades.",
-      "Full documentation: architecture, runbooks, incident response procedures.",
+      "We build your first 3 production AI workflows — document review, compliance checking, code assistance, or whatever your team needs most.",
+      "Your engineers learn to operate, troubleshoot, and extend the stack through hands-on working sessions.",
+      "Full documentation: architecture diagrams, operations runbooks, and step-by-step incident response guides.",
     ],
   },
   {
     week: "7–8",
-    title: "Go-Live & Post-Deployment Support",
+    title: "Go-live and post-deployment support",
     items: [
-      "Production cutover with your team driving.",
-      "Performance benchmarks and cost baselines established.",
-      "Optional retainer begins for ongoing workflow development and optimization.",
+      "Production cutover with your team in control — you own it from day one.",
+      "Performance benchmarks and cost baselines established so you know exactly what you're running.",
+      "Optional retainer for ongoing workflow development and optimization — no forced subscription.",
     ],
   },
 ];
 ---
 
-<section id="how-it-works" class="border-t border-deep-700/50 py-20 sm:py-28">
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+<section id="how-it-works" class="py-20 sm:py-28">
+  <hr class="section-divider" />
+  <div class="mx-auto max-w-7xl px-4 pt-20 sm:px-6 lg:px-8">
     <div class="section-header">
       <h2>From zero to production in 6–8 weeks</h2>
       <p>
-        This isn't a DIY toolkit you assemble yourself. It's a turnkey engagement.
+        A done-for-you engagement — not a DIY toolkit.
         Your team owns the stack at the end.
       </p>
     </div>
 
-    <div class="mt-12 relative">
-      <!-- Timeline line -->
-      <div class="absolute top-0 bottom-0 left-[18px] hidden w-px bg-gradient-to-b from-accent via-mesh to-deep-600 md:block" />
+    <div class="mt-12 relative mx-auto max-w-3xl">
+      <!-- Timeline spine -->
+      <div class="absolute top-5 bottom-5 left-[19px] w-px hidden md:block"
+        style="background: linear-gradient(to bottom, var(--color-accent), rgba(20,184,166,0.4), rgba(255,255,255,0.04));" />
 
-      <div class="space-y-8 md:space-y-12">
+      <div class="space-y-6">
         {steps.map((step) => (
-          <div class="relative md:flex md:gap-8">
-            <!-- Week badge -->
-            <div class="flex items-center gap-4 md:w-32 md:flex-col md:items-start md:gap-1">
-              <div class="relative z-10 flex h-9 w-9 items-center justify-center rounded-full bg-accent text-xs font-bold text-deep-900 shadow-lg shadow-accent/20 md:h-10 md:w-10">
+          <div class="relative flex gap-6 md:gap-8">
+            <!-- Step indicator -->
+            <div class="flex-shrink-0 flex flex-col items-center gap-1.5 pt-0.5" style="width: 40px;">
+              <div
+                class="relative z-10 flex h-10 w-10 items-center justify-center rounded-full font-mono text-xs font-bold"
+                style={`background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-hover) 100%); color: #050a0f; box-shadow: 0 0 0 3px rgba(245,158,11,0.15), 0 4px 12px rgba(245,158,11,0.25);`}>
                 {step.week}
               </div>
-              <span class="text-xs font-semibold uppercase tracking-wider text-accent md:text-[10px]">
-                Week {step.week}
-              </span>
             </div>
 
-            <!-- Step card -->
-            <div class="mt-3 flex-1 md:mt-0">
+            <!-- Card -->
+            <div class="flex-1 pb-2">
               <div class="card">
+                <div class="mb-1 font-mono text-xs font-semibold uppercase tracking-widest" style="color: var(--color-accent); opacity: 0.7;">
+                  Week {step.week}
+                </div>
                 <h3 class="text-base font-semibold text-white">{step.title}</h3>
                 <ul class="mt-3 space-y-2">
                   {step.items.map((item) => (
-                    <li class="flex gap-2 text-sm text-deep-400">
-                      <span class="mt-1.5 block h-1.5 w-1.5 flex-shrink-0 rounded-full bg-deep-600" />
+                    <li class="flex gap-2.5 text-base" style="color: var(--color-deep-400);">
+                      <span class="mt-2 block h-1.5 w-1.5 flex-shrink-0 rounded-full" style="background: rgba(245,158,11,0.35);" />
                       {item}
                     </li>
                   ))}
@@ -85,19 +89,24 @@ const steps = [
       </div>
     </div>
 
-    <!-- Deliverables summary -->
-    <div class="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-      {[
-        { label: "IaC Blueprint", desc: "Helm charts, configs, automated scripts" },
-        { label: "Security Assessment", desc: "Threat model, IAM config, audit logs" },
-        { label: "Team Training", desc: "Day-2 operations, runbooks, handover" },
-        { label: "Ongoing Support", desc: "Optional retainer for workflow dev & optimization" },
-      ].map((item) => (
-        <div class="rounded-lg border border-deep-700 bg-deep-800/30 p-4 text-center">
-          <div class="text-sm font-semibold text-white">{item.label}</div>
-          <div class="mt-1 text-xs text-deep-400">{item.desc}</div>
-        </div>
-      ))}
+    <!-- Deliverables -->
+    <div class="mt-16 mx-auto max-w-3xl">
+      <p class="mb-5 text-center text-xs font-semibold uppercase tracking-widest" style="color: var(--color-deep-400);">
+        What your team receives at handover
+      </p>
+      <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        {[
+          { label: "Deployment Templates", desc: "Configs, scripts, and automation" },
+          { label: "Security Assessment", desc: "Threat model and access control setup" },
+          { label: "Hands-On Training", desc: "Live ops and troubleshooting sessions" },
+          { label: "Optional Retainer", desc: "Ongoing support on your terms" },
+        ].map((item) => (
+          <div class="deliverable-box">
+            <div class="text-sm font-semibold text-white">{item.label}</div>
+            <div class="mt-1 text-xs leading-relaxed" style="color: var(--color-deep-400);">{item.desc}</div>
+          </div>
+        ))}
+      </div>
     </div>
   </div>
 </section>

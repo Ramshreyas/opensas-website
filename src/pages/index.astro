@@ -8,12 +8,31 @@ import HowItWorksSection from "../components/HowItWorksSection.astro";
 import FAQSection from "../components/FAQSection.astro";
 import CTASection from "../components/CTASection.astro";
 import Footer from "../components/Footer.astro";
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "OpenSAS — Private AI Infrastructure Deployment",
+  provider: {
+    "@type": "Organization",
+    name: "OpenSAS",
+  },
+  description:
+    "A fully self-hosted AI automation stack — LLM inference, vector search, workflow automation, and secure access — deployed on your own servers in 6–8 weeks. No data leaves your network.",
+  serviceType: "AI Infrastructure Consulting",
+  areaServed: "Worldwide",
+  offers: {
+    "@type": "Offer",
+    description: "Full-stack private AI deployment engagement. Includes architecture assessment, deployment, and team handover.",
+  },
+};
 ---
 
 <BaseLayout
-  title="OpenSAS — Sovereign Automation Stack"
-  description="Run autonomous agents on your hardware, under your control. Zero data leak, zero vendor lock-in. Production AI infrastructure deployed in 6-8 weeks."
+  title="OpenSAS — Private AI Infrastructure for Regulated Teams"
+  description="Deploy a complete, self-hosted AI automation stack on your own servers in 6–8 weeks. No data leaves your network. No vendor lock-in. Your team owns the stack outright."
 >
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
   <Header />
   <main>
     <Hero />
