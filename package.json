@@ -4,6 +4,7 @@
   "type": "module",
   "version": "0.1.0",
   "description": "OpenSAS — Sovereign Automation Stack marketing website",
+  "packageManager": "pnpm@11.9.0",
   "license": "Apache-2.0",
   "scripts": {
     "dev": "astro dev",
