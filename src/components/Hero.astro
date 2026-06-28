@@ -1,10 +1,10 @@
 ---
 const services = [
-  { name: "AI model serving",     location: "your GPU" },
-  { name: "Document search",      location: "your storage" },
-  { name: "Workflow automation",  location: "your cluster" },
-  { name: "Secure access",        location: "your network" },
-  { name: "Observability",        location: "your dashboards" },
+  { name: "Private AI inference",    assurance: "no external API calls" },
+  { name: "Workflow automation",     assurance: "connects existing tools" },
+  { name: "Complete audit trail",    assurance: "every action logged" },
+  { name: "Secure access control",   assurance: "compliance-ready" },
+  { name: "Any open-source model",   assurance: "no vendor lock-in" },
 ];
 ---
 
@@ -106,7 +106,7 @@ const services = [
                   </span>
                 </div>
                 <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.6875rem; color: var(--color-deep-500); white-space: nowrap;">
-                  {s.location}
+                  {s.assurance}
                 </span>
               </div>
             ))}
