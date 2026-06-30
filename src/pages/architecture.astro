@@ -191,6 +191,50 @@ const deploymentSteps = [
       </div>
     </section>
 
+    <!-- Architecture Principles -->
+    <section class="border-t border-deep-700/50 py-16 sm:py-20">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <div class="section-header">
+          <h2>Architecture Principles</h2>
+          <p>Design constraints that shaped every component choice.</p>
+        </div>
+
+        <div class="mt-10 grid gap-4 sm:grid-cols-2">
+          {[
+            {
+              title: "Composable",
+              desc: "Each layer deploys independently. Skip what you don't need. Add layers as requirements evolve. No forced all-or-nothing install.",
+            },
+            {
+              title: "Auditable",
+              desc: "Every component produces structured logs. Teleport session recording, OpenBao audit trails, and OpenTelemetry tracing give you a complete, queryable record of every action.",
+            },
+            {
+              title: "Portable",
+              desc: "No cloud-specific dependencies. Deploy on managed K8s (EKS/AKS/GKE), bare metal, or air-gapped on-premises clusters. Migrate between providers without stack changes.",
+            },
+            {
+              title: "Upgradable",
+              desc: "Every component is independently versioned and upgradable via Helm. We provide upgrade playbooks and test them before each engagement. Rolling upgrades, zero downtime.",
+            },
+            {
+              title: "No egress",
+              desc: "The stack is designed from the ground up with the assumption that no traffic crosses the network boundary. Every external dependency has a self-hosted equivalent deployed alongside it.",
+            },
+            {
+              title: "GitOps-native",
+              desc: "All configuration lives in a Git repo. Argo CD or Flux reconciles desired state. Every change is a commit — auditable, reversible, and reviewable by your team.",
+            },
+          ].map((principle) => (
+            <div class="rounded-lg border border-deep-700 bg-deep-800/30 p-4 transition-colors hover:border-deep-600">
+              <h4 class="text-sm font-semibold text-white">{principle.title}</h4>
+              <p class="mt-1 text-xs leading-relaxed text-deep-400">{principle.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
     <!-- Five-Layer Stack -->
     <section class="border-t border-deep-700/50 py-16 sm:py-20">
       <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
@@ -253,50 +297,6 @@ const deploymentSteps = [
                 </div>
               )}
             </article>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Architecture Principles -->
-    <section class="border-t border-deep-700/50 py-16 sm:py-20">
-      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-        <div class="section-header">
-          <h2>Architecture Principles</h2>
-          <p>Design constraints that shaped every component choice.</p>
-        </div>
-
-        <div class="mt-10 grid gap-4 sm:grid-cols-2">
-          {[
-            {
-              title: "Composable",
-              desc: "Each layer deploys independently. Skip what you don't need. Add layers as requirements evolve. No forced all-or-nothing install.",
-            },
-            {
-              title: "Auditable",
-              desc: "Every component produces structured logs. Teleport session recording, OpenBao audit trails, and OpenTelemetry tracing give you a complete, queryable record of every action.",
-            },
-            {
-              title: "Portable",
-              desc: "No cloud-specific dependencies. Deploy on managed K8s (EKS/AKS/GKE), bare metal, or air-gapped on-premises clusters. Migrate between providers without stack changes.",
-            },
-            {
-              title: "Upgradable",
-              desc: "Every component is independently versioned and upgradable via Helm. We provide upgrade playbooks and test them before each engagement. Rolling upgrades, zero downtime.",
-            },
-            {
-              title: "No egress",
-              desc: "The stack is designed from the ground up with the assumption that no traffic crosses the network boundary. Every external dependency has a self-hosted equivalent deployed alongside it.",
-            },
-            {
-              title: "GitOps-native",
-              desc: "All configuration lives in a Git repo. Argo CD or Flux reconciles desired state. Every change is a commit — auditable, reversible, and reviewable by your team.",
-            },
-          ].map((principle) => (
-            <div class="rounded-lg border border-deep-700 bg-deep-800/30 p-4 transition-colors hover:border-deep-600">
-              <h4 class="text-sm font-semibold text-white">{principle.title}</h4>
-              <p class="mt-1 text-xs leading-relaxed text-deep-400">{principle.desc}</p>
-            </div>
           ))}
         </div>
       </div>
